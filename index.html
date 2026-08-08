@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="PureDental Schweiz brand guideline and design token reference." />
+    <title>PureDental Schweiz — Brand Guidelines</title>
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/guideline.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="wordmark" href="#top" aria-label="PureDental brand guidelines home">
+          <span class="wordmark__mark">PD</span>
+          <span class="wordmark__text">PUREDENTAL <small>SCHWEIZ</small></span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>☰</button>
+
+        <nav class="nav" aria-label="Guideline sections" data-nav>
+          <a href="#references">References</a>
+          <a href="#typography">Typography</a>
+          <a href="#colors">Colors</a>
+          <a href="#spacing">Spacing</a>
+          <a href="#components">Components</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow">Brand guideline · v1.0</span>
+            <h1>Swiss precision. <span>Digital clarity.</span></h1>
+            <p class="lead">A practical design system for PureDental Schweiz, derived from the approved web and mobile mockups. Use it as the visual source of truth for websites, landing pages and product interfaces.</p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#typography">Explore the system →</a>
+              <a class="button button--secondary" href="tokens/design-tokens.json">Open JSON tokens</a>
+            </div>
+          </div>
+
+          <div class="hero__panel" aria-label="Decorative dental implant brand illustration">
+            <div class="hero__implant">IMPLANT</div>
+            <div class="hero__facts">
+              <div class="hero__fact"><span class="icon-tile">✦</span><div><strong>Swiss quality standards</strong><span>Precision, safety and confidence.</span></div></div>
+              <div class="hero__fact"><span class="icon-tile">◇</span><div><strong>Premium materials</strong><span>Long-lasting and biocompatible.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="references">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">01 · Visual reference</span><h2>Foundation from the mockups.</h2></div>
+            <p class="lead">The system follows the same visual language: deep navy typography, vivid blue gradients, generous white space, rounded surfaces and clinical 3D imagery.</p>
+          </div>
+
+          <div class="reference-grid">
+            <figure class="reference-card"><img src="assets/reference/website-mockup.jpeg" alt="PureDental website mockup" /></figure>
+            <figure class="reference-card reference-card--mobile"><img src="assets/reference/mobile-app-mockup.jpeg" alt="PureDental mobile app mockups" /></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--subtle" id="typography">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">02 · Typography</span><h2>Manrope for precise, modern communication.</h2></div>
+            <p class="lead">Manrope balances a premium geometric feel with excellent readability. Use the system fallbacks when the web font is unavailable.</p>
+          </div>
+
+          <div class="type-grid">
+            <article class="card type-specimen">
+              <div class="type-specimen__meta"><span class="tag">Display XL</span><button class="token-copy" data-copy="64px / 72px · 800">Copy spec</button></div>
+              <p class="type-specimen__sample display-xl">Swiss quality. Lasting smiles.</p>
+            </article>
+            <article class="card type-specimen">
+              <div class="type-specimen__meta"><span class="tag">Heading LG</span><button class="token-copy" data-copy="48px / 56px · 700">Copy spec</button></div>
+              <p class="type-specimen__sample heading-lg">Solutions for every smile.</p>
+            </article>
+            <article class="card type-specimen">
+              <div class="type-specimen__meta"><span class="tag">Body LG</span><button class="token-copy" data-copy="18px / 31.5px · 400">Copy spec</button></div>
+              <p class="type-specimen__sample body-lg">Premium dental implants, stunning aesthetics and personalized care — with a calm, clear and trustworthy tone.</p>
+            </article>
+            <article class="card type-specimen">
+              <div class="type-specimen__meta"><span class="tag">Label SM</span><button class="token-copy" data-copy="12.5px / 18px · 700 · 0.14em">Copy spec</button></div>
+              <p class="type-specimen__sample label-sm">Swiss quality standards</p>
+            </article>
+          </div>
+
+          <div class="card card--elevated" style="margin-top: var(--space-8)">
+            <h3>Font usage guide</h3>
+            <ul class="usage-list">
+              <li><strong>Hero / display</strong><span>700–800 weight, maximum 2–3 lines, tight letter spacing.</span></li>
+              <li><strong>Section headings</strong><span>700 weight, sentence case, one clear message per heading.</span></li>
+              <li><strong>Body copy</strong><span>400–500 weight, 65–72 characters per line, comfortable 1.6–1.75 line height.</span></li>
+              <li><strong>Navigation</strong><span>500–600 weight, 14–15 px, short labels only.</span></li>
+              <li><strong>Buttons</strong><span>600–700 weight, 15–16 px, action-focused wording.</span></li>
+              <li><strong>Eyebrows</strong><span>700 weight, uppercase, generous tracking, used sparingly.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="colors">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">03 · Color</span><h2>Clinical confidence with an electric edge.</h2></div>
+            <p class="lead">Navy creates trust and readability. Electric blue drives action. Cyan adds freshness and depth. White remains the dominant surface.</p>
+          </div>
+
+          <div class="color-grid">
+            <article class="swatch"><div class="swatch__color" style="background:#07143e"></div><div class="swatch__info"><strong>Navy 950</strong><span>#07143E</span><button class="token-copy" data-copy="#07143E">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#1e4dff"></div><div class="swatch__info"><strong>Primary 600</strong><span>#1E4DFF</span><button class="token-copy" data-copy="#1E4DFF">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#2f6bff"></div><div class="swatch__info"><strong>Primary 500</strong><span>#2F6BFF</span><button class="token-copy" data-copy="#2F6BFF">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#56d7ff"></div><div class="swatch__info"><strong>Accent cyan</strong><span>#56D7FF</span><button class="token-copy" data-copy="#56D7FF">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#eef4ff"></div><div class="swatch__info"><strong>Primary 50</strong><span>#EEF4FF</span><button class="token-copy" data-copy="#EEF4FF">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#ffffff"></div><div class="swatch__info"><strong>White</strong><span>#FFFFFF</span><button class="token-copy" data-copy="#FFFFFF">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#f7f9fd"></div><div class="swatch__info"><strong>Neutral 50</strong><span>#F7F9FD</span><button class="token-copy" data-copy="#F7F9FD">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#dee5f0"></div><div class="swatch__info"><strong>Neutral 200</strong><span>#DEE5F0</span><button class="token-copy" data-copy="#DEE5F0">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#5b6884"></div><div class="swatch__info"><strong>Neutral 600</strong><span>#5B6884</span><button class="token-copy" data-copy="#5B6884">Copy</button></div></article>
+            <article class="swatch"><div class="swatch__color" style="background:#15966a"></div><div class="swatch__info"><strong>Success</strong><span>#15966A</span><button class="token-copy" data-copy="#15966A">Copy</button></div></article>
+          </div>
+
+          <div class="gradient-grid">
+            <article class="card gradient-card" style="background:var(--gradient-primary)"><h3>Primary gradient</h3><p>Primary buttons, active states and high-priority highlights.</p></article>
+            <article class="card gradient-card" style="background:linear-gradient(145deg,#07143e,#1e4dff 70%,#56d7ff)"><h3>Deep brand gradient</h3><p>Hero backgrounds and premium campaign visuals.</p></article>
+            <article class="card gradient-card" style="background:linear-gradient(145deg,#91b6ff,#ffffff 55%,#cff5ff);color:#07143e"><h3>Soft gradient</h3><p style="color:#5b6884">Card backgrounds and supporting content areas.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--subtle" id="spacing">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">04 · Spacing</span><h2>A disciplined 4 px base grid.</h2></div>
+            <p class="lead">Use only the documented spacing values. Consistency matters more than squeezing every layout into a unique measurement.</p>
+          </div>
+
+          <div class="card spacing-demo">
+            <div class="spacing-row"><strong>4 px</strong><div class="spacing-bar" style="width:4px"></div><code>--space-1</code></div>
+            <div class="spacing-row"><strong>8 px</strong><div class="spacing-bar" style="width:8px"></div><code>--space-2</code></div>
+            <div class="spacing-row"><strong>12 px</strong><div class="spacing-bar" style="width:12px"></div><code>--space-3</code></div>
+            <div class="spacing-row"><strong>16 px</strong><div class="spacing-bar" style="width:16px"></div><code>--space-4</code></div>
+            <div class="spacing-row"><strong>24 px</strong><div class="spacing-bar" style="width:24px"></div><code>--space-6</code></div>
+            <div class="spacing-row"><strong>32 px</strong><div class="spacing-bar" style="width:32px"></div><code>--space-8</code></div>
+            <div class="spacing-row"><strong>48 px</strong><div class="spacing-bar" style="width:48px"></div><code>--space-12</code></div>
+            <div class="spacing-row"><strong>64 px</strong><div class="spacing-bar" style="width:64px"></div><code>--space-16</code></div>
+            <div class="spacing-row"><strong>96 px</strong><div class="spacing-bar" style="width:96px"></div><code>--space-24</code></div>
+            <div class="spacing-row"><strong>120 px</strong><div class="spacing-bar" style="width:120px"></div><code>--space-30</code></div>
+          </div>
+
+          <div class="type-grid" style="margin-top:var(--space-8)">
+            <article class="card"><h3>Layout rules</h3><ul class="usage-list"><li><strong>Desktop gutter</strong><span>72 px maximum</span></li><li><strong>Tablet gutter</strong><span>32 px</span></li><li><strong>Mobile gutter</strong><span>20 px</span></li><li><strong>Section spacing</strong><span>120 / 88 / 64 px</span></li></ul></article>
+            <article class="card"><h3>Component rules</h3><ul class="usage-list"><li><strong>Card padding</strong><span>24–32 px</span></li><li><strong>Card gap</strong><span>24 px</span></li><li><strong>Icon to text</strong><span>12 px</span></li><li><strong>Button padding</strong><span>16 × 28 px</span></li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="components">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">05 · UI language</span><h2>Soft surfaces, strong actions.</h2></div>
+            <p class="lead">Components should remain quiet and functional. The primary action receives the strongest visual treatment; supporting elements stay light.</p>
+          </div>
+
+          <div class="component-grid">
+            <article class="card component-card"><div class="component-card__preview"><button class="button button--primary">Book a consultation →</button></div><h3>Primary button</h3><p>Gradient fill, white label, 56 px minimum height and pill radius.</p></article>
+            <article class="card component-card"><div class="component-card__preview"><button class="button button--secondary">View treatments →</button></div><h3>Secondary button</h3><p>Use for lower-priority actions and content exploration.</p></article>
+            <article class="card component-card"><div class="component-card__preview"><div class="card card--elevated"><span class="icon-tile">✦</span><h3 style="margin-top:1rem">Swiss standards</h3><p style="margin:0">Precision, safety and excellence.</p></div></div><h3>Information card</h3><p>White surface, subtle border, 24 px radius and restrained shadow.</p></article>
+          </div>
+
+          <div style="margin-top:var(--space-16)">
+            <h3>Radii</h3>
+            <div class="radii-grid">
+              <div class="radius-example" style="border-radius:var(--radius-small)"><strong>12 px</strong><p>Small controls</p></div>
+              <div class="radius-example" style="border-radius:var(--radius-medium)"><strong>16 px</strong><p>Inputs and icon tiles</p></div>
+              <div class="radius-example" style="border-radius:var(--radius-large)"><strong>24 px</strong><p>Standard cards</p></div>
+              <div class="radius-example" style="border-radius:var(--radius-xlarge)"><strong>28 px</strong><p>Feature cards</p></div>
+            </div>
+          </div>
+
+          <div style="margin-top:var(--space-16)">
+            <h3>Shadows</h3>
+            <div class="shadow-grid">
+              <div class="shadow-example" style="box-shadow:var(--shadow-small)"><strong>Small</strong><p>Standard cards</p></div>
+              <div class="shadow-example" style="box-shadow:var(--shadow-medium)"><strong>Medium</strong><p>Floating surfaces</p></div>
+              <div class="shadow-example" style="box-shadow:var(--shadow-large)"><strong>Large</strong><p>Hero imagery</p></div>
+              <div class="shadow-example" style="box-shadow:var(--shadow-brand-glow)"><strong>Brand glow</strong><p>Primary actions</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="wordmark"><span class="wordmark__mark">PD</span><span class="wordmark__text">PUREDENTAL <small>SCHWEIZ</small></span></div>
+        <p>Brand guideline v1.0 · Derived from supplied visual mockups.</p>
+      </div>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+  </body>
+</html>

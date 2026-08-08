@@ -1,0 +1,90 @@
+.button {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 0.9rem 1.7rem;
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-normal) var(--ease-standard), background var(--duration-normal) var(--ease-standard);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button--primary {
+  color: var(--color-white);
+  background: var(--gradient-primary);
+  box-shadow: var(--shadow-brand-glow);
+}
+
+.button--secondary {
+  color: var(--color-primary-700);
+  border-color: var(--color-primary-300);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.button--ghost {
+  min-height: 2.75rem;
+  color: var(--color-primary-700);
+  padding-inline: 0.75rem;
+}
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-small);
+  padding: var(--space-6);
+}
+
+.card--elevated {
+  box-shadow: var(--shadow-medium);
+}
+
+.icon-tile {
+  display: inline-grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--color-primary-100);
+  border-radius: var(--radius-medium);
+  color: var(--color-primary-600);
+  background: var(--color-primary-50);
+}
+
+.token-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 0;
+  color: var(--color-text-secondary);
+  background: transparent;
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.token-copy:hover {
+  color: var(--color-primary-700);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-primary-800);
+  background: var(--color-primary-50);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.76rem;
+  font-weight: var(--font-weight-bold);
+}
