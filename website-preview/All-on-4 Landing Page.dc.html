@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/colors.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/typography.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/effects.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/base.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/components.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/styles.css">
+<script src="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/_ds_bundle.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;font-family:"Manrope",system-ui,sans-serif}
+img{max-width:100%}
+a{color:#1e4dff;text-decoration:none}a:hover{color:#0c35d8}
+
+.pd-page{max-width:1440px;margin:0 auto;background:#fff}
+.pd-sec{padding:88px 56px;border-top:1px solid var(--color-border)}
+
+/* ---- layout grids ---- */
+.pd-hero{display:grid;grid-template-columns:1fr 470px;gap:56px;align-items:center}
+.pd-2col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.pd-2col--tight{gap:28px}
+.pd-2col--mid{align-items:center}
+.pd-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pd-journey{display:grid;grid-template-columns:320px 1fr;gap:36px;align-items:start}
+.pd-doc{display:grid;grid-template-columns:480px 1fr;gap:48px;align-items:start}
+.pd-safety-head{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+.pd-cta{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.pd-ba{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pd-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border-radius:24px;overflow:hidden;background:var(--color-border);border:1px solid var(--color-border);box-shadow:var(--shadow-medium)}
+.pd-creds{display:grid;grid-template-columns:1fr 1fr;gap:16px 32px}
+.pd-sticky{position:sticky;top:96px}
+
+/* ---- comparison table ---- */
+.pd-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--color-border);border-radius:24px}
+.pd-table{min-width:780px}
+.pd-trow{display:grid;grid-template-columns:1.1fr 1fr 1fr;align-items:stretch}
+
+/* ---- type ---- */
+.pd-h1{margin:0;font:800 clamp(36px,5.4vw,62px)/1.02 'Manrope';letter-spacing:-.05em;color:#07143e}
+.pd-h2{margin:0;font:800 clamp(28px,3.6vw,42px)/1.06 'Manrope';letter-spacing:-.045em;color:#07143e}
+.pd-h2--light{color:#fff}
+.pd-eyebrow{font:700 11px/1 'Manrope';letter-spacing:.14em;color:#1e4dff}
+.pd-lead{font:500 clamp(16px,1.5vw,19.5px)/1.55 'Manrope';color:var(--color-text-secondary);text-wrap:pretty}
+.pd-body{font:500 clamp(15px,1.2vw,17px)/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty}
+
+/* ---- nav ---- */
+.pd-nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-border);padding:16px 56px;display:flex;align-items:center;gap:36px}
+.pd-nav__brand{display:flex;align-items:center;gap:10px;min-width:0;flex:0 1 auto;overflow:hidden}
+.pd-nav__word{font:800 19px/1 'Manrope';letter-spacing:-.045em;color:#07143e;white-space:nowrap}
+.pd-nav__mark{font:700 10px/1 'Manrope';letter-spacing:.16em;color:#1e4dff;white-space:nowrap}
+.pd-nav__links{display:flex;gap:26px;font:600 13.5px/1 'Manrope';color:var(--color-text-secondary)}
+.pd-nav__right{margin-left:auto;display:flex;align-items:center;gap:18px;flex:0 0 auto}
+
+/* ---- misc ---- */
+.pd-ph{background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);border-radius:28px;display:grid;place-items:center;text-align:center;padding:20px;font:600 11px/1.7 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-400)}
+.pd-tabrow{display:flex;gap:8px;padding:5px;border-radius:999px;background:var(--color-neutral-100);width:fit-content;max-width:100%;overflow-x:auto}
+.pd-btnstack{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+/* primary action on the dark gradient — DS secondary is 74% white, which reads lavender on blue */
+.pd-cta-primary .pd-btn--secondary{background:#fff;border-color:#fff;box-shadow:0 12px 32px rgba(8,19,49,.2)}
+/* secondary action on the dark gradient — the DS ghost variant uses blue text, unreadable here */
+.pd-btn-onblue{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 1.7rem;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.1);color:#fff;font:700 .95rem/1 'Manrope';white-space:nowrap;cursor:pointer;transition:transform var(--duration-fast) var(--ease-standard),background var(--duration-normal) var(--ease-standard)}
+.pd-btn-onblue:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+
+/* ---- tablet ---- */
+@media (max-width:1024px){
+  .pd-sec{padding:72px 32px}
+  .pd-nav{padding:14px 32px;gap:20px}
+  .pd-nav__links{display:none}
+  .pd-hero{grid-template-columns:1fr;gap:40px}
+  .pd-2col{grid-template-columns:1fr;gap:40px}
+  .pd-3col{grid-template-columns:1fr 1fr}
+  .pd-journey{grid-template-columns:1fr;gap:24px}
+  .pd-doc{grid-template-columns:1fr;gap:32px}
+  .pd-safety-head{grid-template-columns:1fr;gap:28px}
+  .pd-cta{grid-template-columns:1fr;gap:32px}
+  .pd-sticky{position:static}
+  .pd-journey__tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  .pd-journey__tabs>*{flex:0 0 250px}
+}
+
+/* ---- mobile ---- */
+@media (max-width:720px){
+  .pd-sec{padding:56px 20px}
+  .pd-nav{padding:12px 20px;gap:10px}
+  .pd-nav__phone{display:none}
+  .pd-nav__word{font-size:16px}
+  .pd-nav__mark{display:none}
+  .pd-3col{grid-template-columns:1fr}
+  .pd-ba{grid-template-columns:1fr;gap:14px}
+  .pd-stats{grid-template-columns:1fr}
+  .pd-creds{grid-template-columns:1fr}
+  .pd-2col{gap:32px}
+  .pd-btnstack>*{width:100%}
+  .pd-hide-sm{display:none}
+  .pd-journey__panel{padding:28px 22px!important}
+  .pd-doc__quote{padding:20px 22px!important}
+}
+</style>
+</helmet>
+
+<div class="pd-page">
+
+<div data-screen-label="01 Sticky nav" class="pd-nav">
+<div class="pd-nav__brand"><img src="assets/logo-mark-tooth.png" alt="" style="width:26px;height:26px;object-fit:contain;flex:0 0 auto"><span class="pd-nav__word">PUREDENTAL</span><span class="pd-nav__mark">SCHWEIZ 🇨🇭</span></div>
+<nav class="pd-nav__links"><span style="color:#07143e">All-on-4®</span><span>Transformation</span><span>Who it suits</span><span>4 or 6</span><span>Prices</span><span>Safety</span></nav>
+<div class="pd-nav__right"><span class="pd-nav__phone" style="font:700 13.5px/1 'Manrope';color:#07143e">+41 XX XXX XX XX</span><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="sm" hint-size="auto,40px">Free consultation</x-import></div>
+</div>
+
+<div data-screen-label="02 Hero" class="pd-sec" style="border-top:none;background:radial-gradient(circle at 78% 24%,rgba(86,215,255,.3),transparent 46%),linear-gradient(135deg,#f9fbff,#eef4ff)">
+<div class="pd-hero">
+<div style="display:flex;flex-direction:column;gap:24px">
+<span class="pd-eyebrow">FULL ARCH REHABILITATION · ALL-ON-4®</span>
+<h1 class="pd-h1">A whole arch of<br>fixed teeth.<br><span style="color:#1e4dff">In 48 to 72 hours.</span></h1>
+<p class="pd-lead" style="margin:0;max-width:27em">Four to six implants carry a complete fixed bridge — planned in Zürich, placed in Budapest. In most cases no bone grafting is needed, and you leave with teeth that do not come out.</p>
+<div class="pd-btnstack"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" hint-size="auto,56px">Book a free consultation</x-import><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="lg" hint-size="auto,56px">Ask about my case</x-import></div>
+<div class="pd-stats" style="margin-top:12px">
+<sc-for list="{{ heroStats }}" as="s" hint-placeholder-count="3">
+<div style="background:rgba(255,255,255,.88);backdrop-filter:blur(8px);padding:22px 24px"><div style="font:800 30px/1 'Manrope';letter-spacing:-.04em;color:#07143e">{{ s.big }}</div><div style="margin-top:6px;font:600 12px/1.4 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)"><span style="display:block">{{ s.l1 }}</span><span style="display:block">{{ s.l2 }}</span></div></div>
+</sc-for>
+</div>
+</div>
+<div class="pd-ph" style="min-height:340px;height:100%">Image placeholder<br/>All-on-4 arch render</div>
+</div>
+</div>
+
+<div data-screen-label="03 What it is" class="pd-sec">
+<div class="pd-2col">
+<div>
+<span class="pd-eyebrow">WHAT ALL-ON-4 ACTUALLY IS</span>
+<h2 class="pd-h2" style="margin:16px 0">Four implants. One fixed arch.</h2>
+<p class="pd-body" style="margin:0 0 20px;max-width:52ch">All-on-4® is an implant technique developed in the 1990s by Dr. Paulo Malo, a Portuguese dentist. Just four to six implants support a complete fixed upper or lower denture.</p>
+<p class="pd-body" style="margin:0 0 28px;max-width:52ch">The posterior implants are placed at an angle, which makes better use of the bone you already have — so in most cases no bone grafting is needed. A temporary fixed bridge goes on within 48–72 hours of surgery; the final bridge follows after a 3–4 month healing period.</p>
+<div class="pd-card" style="padding:28px;display:flex;gap:20px;align-items:flex-start"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.IconTile" hint-size="48px,48px"><span style="font:600 9px/1 'Manrope';color:var(--color-neutral-400)">ICON</span></x-import><div><strong style="display:block;font:700 17px/1.3 'Manrope';letter-spacing:-.02em;color:#07143e">Neodent® NeoArch and Straumann® Pro Arch</strong><p style="margin:6px 0 0;font:500 14.5px/1.6 'Manrope';color:var(--color-text-secondary)">The premium Swiss-enhanced versions of the classic All-on-4™ concept — not a generic system. Your implant passport travels home with you.</p></div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="3">
+<div onClick="{{ a.onClick }}" style="{{ a.cardStyle }}">
+<div style="display:flex;align-items:center;gap:14px"><span style="{{ a.numStyle }}">{{ a.n }}</span><div><span style="display:block;font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">{{ a.stage }}</span><strong style="display:block;margin-top:6px;font:800 22px/1.15 'Manrope';letter-spacing:-.035em;color:#07143e">{{ a.title }}</strong></div></div>
+<div style="{{ a.bodyStyle }}"><p style="margin:14px 0 0;font:500 15px/1.62 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ a.desc }}</p></div>
+</div>
+</sc-for>
+<div class="pd-ph" style="height:200px;margin-top:6px">Image placeholder<br/>Implant · abutment · bridge cutaway</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="04 Transformation" class="pd-sec" style="background:linear-gradient(180deg,#fbfcff,#fff)">
+<div style="max-width:720px;margin:0 auto 40px;text-align:center">
+<span class="pd-eyebrow">BEFORE AND AFTER</span>
+<h2 class="pd-h2" style="margin:16px 0 12px">See the transformation.</h2>
+<p class="pd-body" style="margin:0 auto;max-width:58ch">Real full arch cases, photographed before treatment and after the final zirconia-ceramic bridge was fitted. Pick a case to see what changed.</p>
+</div>
+<div style="display:flex;justify-content:center;margin-bottom:32px">
+<div class="pd-tabrow">
+<sc-for list="{{ caseTabs }}" as="t" hint-placeholder-count="3"><span onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</span></sc-for>
+</div>
+</div>
+<div class="pd-card pd-card--elevated" style="padding:28px">
+<div class="pd-ba">
+<div style="position:relative">
+<div class="pd-ph" style="height:340px;border-radius:20px;background:var(--color-neutral-100)">Photo placeholder<br/>{{ activeCase.beforeCaption }}</div>
+<span style="position:absolute;top:16px;left:16px;padding:7px 16px;border-radius:999px;background:rgba(8,19,49,.72);backdrop-filter:blur(6px);color:#fff;font:700 11px/1 'Manrope';letter-spacing:.14em">BEFORE</span>
+</div>
+<div style="position:relative">
+<div class="pd-ph" style="height:340px;border-radius:20px;background:var(--color-primary-50);border-color:var(--color-primary-200);color:var(--color-primary-700)">Photo placeholder<br/>{{ activeCase.afterCaption }}</div>
+<span style="position:absolute;top:16px;left:16px;padding:7px 16px;border-radius:999px;background:var(--gradient-primary);color:#fff;font:700 11px/1 'Manrope';letter-spacing:.14em;box-shadow:var(--shadow-brand-glow)">AFTER</span>
+</div>
+</div>
+<div class="pd-2col pd-2col--tight" style="margin-top:26px;align-items:center">
+<div>
+<strong style="display:block;font:800 22px/1.2 'Manrope';letter-spacing:-.035em;color:#07143e;text-wrap:pretty">{{ activeCase.title }}</strong>
+<p style="margin:10px 0 0;font:500 15.5px/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ activeCase.desc }}</p>
+</div>
+<div class="pd-3col" style="gap:14px">
+<sc-for list="{{ activeCase.facts }}" as="f" hint-placeholder-count="3">
+<div style="padding:16px 18px;border-radius:16px;background:var(--color-primary-50);border:1px solid var(--color-primary-200)"><span style="display:block;font:800 20px/1 'Manrope';letter-spacing:-.035em;color:var(--color-primary-700)">{{ f.big }}</span><span style="display:block;margin-top:6px;font:600 11.5px/1.4 'Manrope';letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary)">{{ f.label }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+<p style="margin:20px auto 0;max-width:70ch;text-align:center;font:500 12.5px/1.6 'Manrope';color:var(--color-neutral-400)">Individual results vary with bone volume, gum health and healing. Photographs to be supplied by the clinic with documented patient consent.</p>
+</div>
+
+<div data-screen-label="05 Who it suits" class="pd-sec">
+<div style="max-width:720px;margin:0 auto 44px;text-align:center">
+<span class="pd-eyebrow">IS IT RIGHT FOR YOU?</span>
+<h2 class="pd-h2" style="margin:16px 0 12px">Who full arch rehabilitation is for.</h2>
+<p class="pd-body" style="margin:0 auto;max-width:58ch">NeoArch and Pro Arch restore a confident smile, clear speech and comfortable eating. Here is who it suits — and where we take extra care.</p>
+</div>
+<div class="pd-2col pd-2col--tight">
+<div class="pd-card" style="padding:36px">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:22px"><span style="flex:none;width:34px;height:34px;border-radius:999px;background:var(--color-primary-50);border:1px solid var(--color-primary-200);display:grid;place-items:center;font:800 14px/1 'Manrope';color:var(--color-primary-700)">✓</span><strong style="font:800 22px/1.15 'Manrope';letter-spacing:-.035em;color:#07143e">Recommended for</strong></div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ suitedFor }}" as="s" hint-placeholder-count="5">
+<div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid var(--color-neutral-100)"><span style="flex:none;width:22px;height:22px;border-radius:999px;background:var(--color-primary-50);display:grid;place-items:center;font:800 11px/1 'Manrope';color:var(--color-primary-700);margin-top:1px">✓</span><span style="font:500 15.5px/1.55 'Manrope';color:#07143e;text-wrap:pretty">{{ s }}</span></div>
+</sc-for>
+</div>
+</div>
+<div class="pd-card" style="padding:36px;background:#fffdf7;border-color:#f3e4c4">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:22px"><span style="flex:none;width:34px;height:34px;border-radius:999px;background:#fdf3e0;border:1px solid #f0dcb4;display:grid;place-items:center;font:800 15px/1 'Manrope';color:var(--color-warning)">!</span><strong style="font:800 22px/1.15 'Manrope';letter-spacing:-.035em;color:#07143e">Requires special consideration</strong></div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ considerations }}" as="c" hint-placeholder-count="6">
+<div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid #f3e8d2"><span style="flex:none;width:22px;height:22px;border-radius:999px;background:#fdf3e0;display:grid;place-items:center;font:800 12px/1 'Manrope';color:var(--color-warning);margin-top:1px">!</span><span style="font:500 15.5px/1.55 'Manrope';color:#07143e;text-wrap:pretty">{{ c }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+<div class="pd-card pd-card--elevated" style="margin-top:28px;padding:32px 36px;display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+<div style="flex:1 1 420px"><strong style="display:block;font:700 18px/1.35 'Manrope';letter-spacing:-.025em;color:#07143e">Only a scan can answer it properly.</strong><p style="margin:8px 0 0;max-width:64ch;font:500 15.5px/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">At the consultation a 3D CBCT scan and a detailed medical history are used to determine individually whether All-on-4 is the right choice for you. Both are complimentary.</p></div>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" hint-size="auto,56px">Book a consultation appointment</x-import>
+</div>
+</div>
+
+<div data-screen-label="06 Four or six" class="pd-sec">
+<div style="max-width:640px;margin-bottom:28px"><span class="pd-eyebrow">A PERSONALISED DECISION</span><h2 class="pd-h2" style="margin:16px 0 12px">When four implants, and when six.</h2><p class="pd-body" style="margin:0">The upper jaw typically has a softer bone structure, so six implants are more often chosen there. The lower jaw is generally denser, so four provide adequate stability.</p></div>
+<div class="pd-tablewrap">
+<div class="pd-table">
+<div class="pd-trow" style="background:#07143e;color:#fff">
+<div style="padding:22px 26px;font:700 12px/1 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)">Criteria</div>
+<div style="padding:18px 26px"><div style="font:800 16px/1.1 'Manrope';letter-spacing:-.025em">All-on-4™</div><div style="margin-top:5px;font:600 12.5px/1 'Manrope';color:#56d7ff">4 implants per jaw</div></div>
+<div style="padding:18px 26px"><div style="font:800 16px/1.1 'Manrope';letter-spacing:-.025em;color:rgba(255,255,255,.86)">All-on-6™</div><div style="margin-top:5px;font:600 12.5px/1 'Manrope';color:rgba(255,255,255,.5)">6 implants per jaw</div></div>
+</div>
+<sc-for list="{{ fourSixRows }}" as="r" hint-placeholder-count="7">
+<div class="pd-trow" style="{{ r.rowStyle }}">
+<div style="padding:20px 26px;font:700 14.5px/1.4 'Manrope';color:#07143e">{{ r.label }}</div>
+<div style="padding:20px 26px;font:700 14.5px/1.45 'Manrope';color:var(--color-primary-700);background:var(--color-primary-50)">{{ r.a }}</div>
+<div style="padding:20px 26px;font:500 14.5px/1.45 'Manrope';color:var(--color-text-secondary)">{{ r.b }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div data-screen-label="07 Journey" class="pd-sec" style="background:#07143e;color:#fff">
+<div style="max-width:680px;margin-bottom:40px">
+<span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#56d7ff">FROM FIRST SCAN TO FINAL BRIDGE</span>
+<h2 class="pd-h2 pd-h2--light" style="margin:16px 0 12px">You know every step before you fly.</h2>
+<p style="margin:0;font:500 16.5px/1.6 'Manrope';color:rgba(255,255,255,.62);text-wrap:pretty">Consultation and aftercare stay in Zürich. Click through what happens in between.</p>
+</div>
+<div class="pd-journey">
+<div class="pd-journey__tabs" style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+<div onClick="{{ d.onClick }}" style="{{ d.tabStyle }}"><span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;{{ d.eyebrowColor }}">{{ d.when }}</span><strong style="display:block;margin-top:7px;font:700 17px/1.28 'Manrope';letter-spacing:-.025em">{{ d.title }}</strong></div>
+</sc-for>
+</div>
+<div class="pd-journey__panel" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:40px;backdrop-filter:blur(10px)">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#56d7ff">{{ activeDay.when }}</span>
+<h3 style="margin:14px 0 12px;font:800 clamp(24px,2.6vw,30px)/1.14 'Manrope';letter-spacing:-.04em">{{ activeDay.title }}</h3>
+<p style="margin:0 0 26px;max-width:58ch;font:500 16px/1.62 'Manrope';color:rgba(255,255,255,.68);text-wrap:pretty">{{ activeDay.desc }}</p>
+<div class="pd-ba">
+<sc-for list="{{ activeDay.items }}" as="i" hint-placeholder-count="4">
+<div style="display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px"><span style="flex:none;width:22px;height:22px;border-radius:999px;background:rgba(86,215,255,.18);color:#56d7ff;display:grid;place-items:center;font:800 11px/1 'Manrope'">✓</span><span style="font:500 14px/1.5 'Manrope';color:rgba(255,255,255,.86)">{{ i }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="08 Price" class="pd-sec">
+<div class="pd-2col">
+<div>
+<span class="pd-eyebrow">TRANSPARENT PRICING</span>
+<h2 class="pd-h2" style="margin:16px 0 14px">One quote. Nothing added later.</h2>
+<p class="pd-body" style="margin:0 0 28px;max-width:52ch">The price covers 3D planning, the implants, both the temporary and the permanent bridge, follow-up examinations and the implant warranty. Your exact figure is set after a personal consultation — because the plan is set after the scan, not before it.</p>
+<strong style="display:block;margin-bottom:16px;font:700 12px/1 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-secondary)">What's included</strong>
+<div style="display:flex;flex-direction:column;gap:12px;max-width:480px">
+<sc-for list="{{ includes }}" as="i" hint-placeholder-count="6">
+<div style="display:flex;gap:14px;align-items:center"><span style="flex:none;width:26px;height:26px;border-radius:999px;background:var(--color-primary-50);border:1px solid var(--color-primary-200);display:grid;place-items:center;font:800 11px/1 'Manrope';color:var(--color-primary-700)">✓</span><span style="font:500 15px/1.5 'Manrope';color:#07143e">{{ i }}</span></div>
+</sc-for>
+</div>
+</div>
+<div class="pd-card pd-card--elevated" style="padding:0;overflow:hidden">
+<div style="padding:34px 36px 30px;background:var(--gradient-primary);color:#fff">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:rgba(255,255,255,.75)">START HERE · NO COST</span>
+<div style="margin-top:14px;font:800 clamp(34px,3.6vw,44px)/1 'Manrope';letter-spacing:-.05em">{{ consultPrice }}</div>
+<p style="margin:12px 0 0;font:500 15px/1.55 'Manrope';color:rgba(255,255,255,.82)">Surgical consultation and 3D CBCT imaging, before any commitment.</p>
+</div>
+<div style="padding:8px 0 0">
+<sc-for list="{{ priceRows }}" as="p" hint-placeholder-count="5">
+<div style="{{ p.rowStyle }}"><span style="font:600 14.5px/1.45 'Manrope';color:#07143e;text-wrap:pretty">{{ p.label }}</span><span style="{{ p.valueStyle }}">{{ p.value }}</span></div>
+</sc-for>
+</div>
+<div style="padding:24px 28px 32px;display:flex;flex-direction:column;gap:16px">
+<div style="padding:18px 20px;border-radius:16px;background:var(--color-primary-50);border:1px solid var(--color-primary-200)"><strong style="display:block;font:700 14.5px/1.3 'Manrope';color:var(--color-primary-700)">PureDental lifetime implant warranty</strong><span style="display:block;margin-top:5px;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">Included in the treatment price, and valid on the implant with proper oral hygiene care.</span></div>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" hint-size="100%,56px">Request my personal quote</x-import>
+<span style="font:500 12.5px/1.5 'Manrope';color:var(--color-neutral-400);text-align:center">Itemised in writing before anything is booked.</span>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="09 Dr Majtenyi" class="pd-sec" style="background:var(--color-surface-subtle)">
+<div class="pd-doc">
+<div>
+<div style="height:clamp(300px,40vw,483px);background:url(&quot;https://puredental.hu/wp-content/uploads/2025/11/a132115f-b006-4c2d-a95e-7367da9c5e6a-scaled-e1762250021466.webp&quot;) center / cover no-repeat;border:1px dashed var(--color-neutral-200);border-radius:28px;width:100%"></div>
+<div style="display:flex;align-items:center;gap:16px;margin-top:20px">
+<div style="width:180px;flex:0 0 auto;height:104px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);border-radius:16px;display:grid;place-items:center;font:600 10px/1.4 'Manrope';letter-spacing:.1em;color:var(--color-neutral-400)">▶ VIDEO 0:90</div>
+<span style="font:700 15px/1.4 'Manrope';color:#1e4dff">Watch a 90-second introduction from Dr. Majtényi →</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px">
+<span class="pd-eyebrow">MEET YOUR DENTIST</span>
+<h2 class="pd-h2" style="margin:0">Dr. Zsolt Majtényi</h2>
+<p style="margin:0;font:600 17px/1.45 'Manrope';color:var(--color-text-secondary)">Every patient at PureDental Schweiz is treated personally by Dr. Zsolt Majtényi.</p>
+<blockquote class="pd-doc__quote" style="margin:0;padding:24px 28px;border-left:3px solid #1e4dff;background:#fff;border-radius:0 16px 16px 0;font:500 16px/1.6 'Manrope';color:#07143e">"I trained at Semmelweis University in Budapest, then spent several years working in clinics across Germany. What I learned there changed how I practice: precision, empathy, and an uncompromising standard for the work — not as marketing language, but as a daily discipline. <br/><br/>Every patient who comes to me from Switzerland gets the same care, the same materials, and the same attention to detail they would expect from a top private practice in Zürich. The only difference is the price they pay — and the fact that I personally know every single one of them by name."<br/><span style="display:block;margin-top:12px;font:700 14px/1 Manrope;color:var(--color-text-secondary)">— Dr. Zsolt Majtényi</span></blockquote>
+<div class="pd-creds" style="font:500 14px/1.5 'Manrope';color:var(--color-text-secondary)">
+<div><strong style="display:block;color:#07143e;font-weight:700">Education</strong>DMD, Semmelweis University, Faculty of Dentistry</div>
+<div><strong style="display:block;color:#07143e;font-weight:700">Clinical experience</strong>Multiple years in German private practices</div>
+<div><strong style="display:block;color:#07143e;font-weight:700">Specialties</strong>Prosthodontics, full-mouth rehabilitation, aesthetic &amp; digital dentistry (CAD/CAM)</div>
+<div><strong style="display:block;color:#07143e;font-weight:700">Languages</strong>German · English · Hungarian</div>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="10 Reviews" class="pd-sec">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+<div><span class="pd-eyebrow">FULL-ARCH PATIENTS</span><h2 class="pd-h2" style="margin:16px 0 0">What patients say.</h2></div>
+<div style="display:flex;align-items:center;gap:12px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.RatingStars" value="{{ 4.9 }}" hint-size="auto,20px"></x-import><span style="font:700 14px/1 'Manrope';color:#07143e">{{ ratingLabel }}</span></div>
+</div>
+<div class="pd-3col">
+<sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+<div class="pd-card" style="padding:32px;display:flex;flex-direction:column;gap:18px">
+<span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">{{ r.tag }}</span>
+<p style="margin:0;flex:1 1 auto;font:500 16px/1.6 'Manrope';color:var(--color-neutral-400);font-style:italic;text-wrap:pretty">{{ r.quote }}</p>
+<div style="display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--color-neutral-100)"><span style="width:38px;height:38px;border-radius:999px;background:var(--color-neutral-100);display:grid;place-items:center;font:800 11px/1 'Manrope';color:var(--color-neutral-400)">?</span><div><strong style="display:block;font:700 14px/1.2 'Manrope';color:var(--color-neutral-400)">{{ r.name }}</strong><span style="font:500 12.5px/1.4 'Manrope';color:var(--color-neutral-400)">{{ r.meta }}</span></div></div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div data-screen-label="11 Safety" class="pd-sec" style="background:linear-gradient(180deg,#fbfcff,#fff)">
+<div class="pd-safety-head" style="margin-bottom:40px">
+<div>
+<span class="pd-eyebrow">TRANSPARENCY AND SAFETY</span>
+<h2 class="pd-h2" style="margin:16px 0 12px">Possible complications, and how we minimise them.</h2>
+<p class="pd-body" style="margin:0;max-width:62ch">As with any surgical procedure, implantation carries a risk of complications. The remaining risk is real, and every patient has the right to know exactly what to expect.</p>
+</div>
+<div class="pd-card pd-card--elevated" style="padding:30px;text-align:center"><div style="font:800 clamp(36px,4vw,46px)/1 'Manrope';letter-spacing:-.05em;color:#07143e">{{ successRate }}</div><div style="margin-top:10px;font:600 12px/1.5 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)">Documented 10-year<br>success rate</div></div>
+</div>
+<div class="pd-3col">
+<sc-for list="{{ risks }}" as="r" hint-placeholder-count="5">
+<div class="pd-card" style="padding:30px;display:flex;flex-direction:column;gap:16px">
+<div><strong style="display:block;font:700 18px/1.3 'Manrope';letter-spacing:-.025em;color:#07143e;text-wrap:pretty">{{ r.name }}</strong><span style="display:inline-flex;align-items:center;margin-top:10px;padding:5px 12px;border-radius:999px;background:var(--color-neutral-100);font:700 11.5px/1 'Manrope';color:var(--color-text-secondary)">{{ r.level }}</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;padding-top:4px">
+<sc-for list="{{ r.facts }}" as="f" hint-placeholder-count="2">
+<div><span style="display:block;font:700 10.5px/1 'Manrope';letter-spacing:.13em;text-transform:uppercase;color:#1e4dff">{{ f.k }}</span><span style="display:block;margin-top:6px;font:500 14.5px/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ f.v }}</span></div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="padding:30px;border-radius:24px;background:var(--gradient-primary);color:#fff;display:flex;flex-direction:column;justify-content:center;gap:12px"><strong style="font:800 20px/1.25 'Manrope';letter-spacing:-.03em;text-wrap:pretty">Most complications are preventable.</strong><p style="margin:0;font:500 14.5px/1.6 'Manrope';color:rgba(255,255,255,.85);text-wrap:pretty">If you follow the post-operative instructions and attend regular check-ups, most of these can be prevented or effectively treated. The lifetime warranty applies to the implant with proper oral hygiene care.</p></div>
+</div>
+</div>
+
+<div data-screen-label="12 FAQ" class="pd-sec">
+<div class="pd-2col">
+<div class="pd-sticky"><span class="pd-eyebrow">STRAIGHT ANSWERS</span><h2 class="pd-h2" style="margin:16px 0 14px">The questions every full-arch patient asks.</h2><p class="pd-body" style="margin:0;max-width:42ch">If yours isn't here, write it in one line and Dr. Majtényi will answer it personally.</p></div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
+<div style="{{ f.cardStyle }}">
+<div onClick="{{ f.toggle }}" style="display:flex;gap:18px;align-items:center;cursor:pointer;padding:22px 26px"><strong style="flex:1 1 auto;font:700 16.5px/1.4 'Manrope';letter-spacing:-.02em;color:#07143e;text-wrap:pretty">{{ f.q }}</strong><span style="{{ f.iconStyle }}">+</span></div>
+<div style="{{ f.bodyStyle }}"><p style="margin:0;padding:0 26px 24px;font:500 15px/1.65 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ f.a }}</p></div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div data-screen-label="13 Final CTA" class="pd-sec" style="border-top:none;background:radial-gradient(circle at 20% 20%,rgba(86,215,255,.22),transparent 50%),var(--gradient-primary);color:#fff">
+<div class="pd-cta">
+<div><span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:rgba(255,255,255,.72)">NO COST · NO OBLIGATION</span><h2 class="pd-h2 pd-h2--light" style="margin:16px 0 14px">Get a pre-proposal in 48 hours.</h2><p style="margin:0;max-width:58ch;font:500 17px/1.6 'Manrope';color:rgba(255,255,255,.82);text-wrap:pretty">Book a call or upload your X-ray, and Dr. Majtényi sends back a written pre-proposal within 48 hours — an indicative treatment plan and price range. Your exact figure follows the complimentary 3D CBCT scan at the consultation.</p></div>
+<div class="pd-cta-primary" style="display:flex;flex-direction:column;gap:14px;min-width:260px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="lg" hint-size="100%,56px">Book a call</x-import><span class="pd-btn-onblue">Upload your X-ray</span><span style="font:500 12.5px/1.5 'Manrope';color:rgba(255,255,255,.7);text-align:center">Zürich clinic · Mon–Fri 08:00–18:00</span></div>
+</div>
+</div>
+
+<div data-screen-label="14 Footer" style="padding:44px 56px;background:#07143e;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+<div style="display:flex;align-items:center;gap:10px"><img src="assets/logo-mark-tooth-light.png" alt="" style="width:22px;height:22px;object-fit:contain"><span style="font:800 15px/1 'Manrope';letter-spacing:-.04em;color:#fff">PUREDENTAL</span><span style="font:700 9px/1 'Manrope';letter-spacing:.16em;color:#56d7ff">SCHWEIZ 🇨🇭</span></div>
+<span style="margin-left:auto;max-width:70ch;font:500 12.5px/1.6 'Manrope'">All-on-4™ is a trademark of Nobel Biocare. Neodent® and Straumann® are trademarks of their respective owners. Treatment performed in Budapest, Hungary.</span>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;successRateLabel&quot;:{&quot;editor&quot;:&quot;string&quot;,&quot;default&quot;:&quot;94–99%&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Trust&quot;},&quot;ratingLabel&quot;:{&quot;editor&quot;:&quot;string&quot;,&quot;default&quot;:&quot;4.9 / 5 · 250+ reviews&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Trust&quot;}}">
+class Component extends DCLogic {
+  state = { anatomy: 0, day: 0, faq: 0, kase: 0 };
+
+  renderVals() {
+    const successRate = this.props.successRateLabel ?? '94–99%';
+    const ratingLabel = this.props.ratingLabel ?? '4.9 / 5 · 250+ reviews';
+
+    const pill = (on) => `display:inline-flex;align-items:center;white-space:nowrap;min-height:38px;padding:0 20px;border-radius:999px;cursor:pointer;font:700 13px/1 'Manrope';transition:all 180ms cubic-bezier(.2,.8,.2,1);${on ? "background:#fff;color:#07143e;box-shadow:0 6px 18px rgba(8,19,49,.1)" : "background:transparent;color:var(--color-text-secondary)"}`;
+
+    const anatomyData = [
+      { n: '1', stage: 'FOUNDATION', title: 'Implant', desc: 'A titanium artificial root that provides a stable foundation for the prosthesis. The angled placement allows secure fixation with fewer implants.' },
+      { n: '2', stage: 'CONNECTOR', title: 'Abutment', desc: 'Connects the implant to the denture and compensates for the angle of the tilted implants — enabling precise, straight denture fixation.' },
+      { n: '3', stage: 'FINAL RESULT', title: 'Bridge', desc: 'A fixed denture replacing the entire dental arch, available in temporary (acrylic) or permanent (zirconia-ceramic) form. Non-removable, stable and natural-feeling.' }
+    ];
+    const anatomy = anatomyData.map((a, i) => {
+      const on = this.state.anatomy === i;
+      return {
+        ...a,
+        onClick: () => this.setState({ anatomy: on ? -1 : i }),
+        cardStyle: `padding:26px 28px;border-radius:24px;cursor:pointer;transition:all 200ms cubic-bezier(.2,.8,.2,1);background:${on ? '#fff' : '#fbfcff'};border:1px solid ${on ? 'var(--color-primary-200)' : 'var(--color-border)'};box-shadow:${on ? '0 14px 40px rgba(8,19,49,.07)' : 'none'}`,
+        numStyle: `flex:none;width:44px;height:44px;border-radius:999px;display:grid;place-items:center;font:800 16px/1 'Manrope';transition:all 200ms;background:${on ? 'var(--gradient-primary)' : 'var(--color-primary-50)'};color:${on ? '#fff' : 'var(--color-primary-700)'};border:1px solid ${on ? 'transparent' : 'var(--color-primary-200)'}`,
+        bodyStyle: `overflow:hidden;transition:max-height 260ms cubic-bezier(.2,.8,.2,1),opacity 200ms;max-height:${on ? 240 : 0}px;opacity:${on ? 1 : 0}`
+      };
+    });
+
+    const caseData = [
+      { label: 'Upper arch', title: 'Failing upper teeth to a fixed upper arch', beforeCaption: 'Upper arch before treatment', afterCaption: 'Final zirconia bridge in place',
+        desc: 'Remaining upper teeth were unsalvageable through advanced periodontitis. Four implants were placed and a fixed temporary bridge was fitted within 72 hours; the definitive zirconia-ceramic bridge followed after healing.',
+        facts: [{ big: '4', label: 'Implants placed' }, { big: '72 h', label: 'To fixed teeth' }, { big: 'None', label: 'Bone graft needed' }] },
+      { label: 'Lower arch', title: 'A loose lower denture replaced with a fixed bridge', beforeCaption: 'Lower arch with removable denture', afterCaption: 'Fixed lower bridge in place',
+        desc: 'A removable lower denture that slipped while eating and speaking. The denser bone of the lower jaw carried four implants comfortably, and the bridge is now screwed in rather than resting on the gum.',
+        facts: [{ big: '4', label: 'Implants placed' }, { big: '48 h', label: 'To fixed teeth' }, { big: '3–4 mo', label: 'To final bridge' }] },
+      { label: 'Both arches', title: 'Full mouth rehabilitation, upper and lower', beforeCaption: 'Both arches before treatment', afterCaption: 'Both arches restored',
+        desc: 'Complete tooth loss across both jaws. Six implants in the softer upper jaw and four in the denser lower jaw, all placed in one surgery under a single sedation, with both temporary bridges fitted in the same visit.',
+        facts: [{ big: '6 + 4', label: 'Implants placed' }, { big: '1', label: 'Single surgery' }, { big: 'Lifetime', label: 'Implant warranty' }] }
+    ];
+    const caseTabs = caseData.map((c, i) => ({ label: c.label, onClick: () => this.setState({ kase: i }), style: pill(this.state.kase === i) }));
+
+    const fourSix = [
+      { label: 'Number of implants', a: '4 per jaw', b: '6 per jaw' },
+      { label: 'Bone volume', a: 'Applicable even with moderate or mildly reduced bone', b: 'Requires good quality, sufficient bone' },
+      { label: 'Jaw', a: 'Typically suitable for both lower and upper jaw', b: 'Typically upper jaw with softer bone structure' },
+      { label: 'Surgery time', a: 'Shorter', b: 'Minimally longer' },
+      { label: 'Price', a: 'More affordable (fewer implants)', b: 'Higher (more implants and abutments)' },
+      { label: 'Load capacity', a: 'Optimal chewing force distribution', b: 'More support points, greater stability' },
+      { label: 'Temporary denture', a: 'Within 48–72 hours', b: 'Within 48–72 hours' }
+    ];
+    const fourSixRows = fourSix.map((r, i) => ({
+      ...r,
+      rowStyle: `${i ? 'border-top:1px solid var(--color-border);' : ''}background:#fff`
+    }));
+
+    const dayData = [
+      { when: 'BEFORE YOU FLY · ZÜRICH', title: 'Consultation and 3D CBCT', desc: 'A surgical consultation and 3D CBCT scan — both complimentary. Your medical history is reviewed in detail, the arch is planned digitally, and you leave with a written treatment plan and a fixed price before anything is booked.', items: ['Surgical consultation', '3D CBCT scan and digital plan', 'Detailed medical history', 'Itemised written quote'] },
+      { when: 'DAY 1 · BUDAPEST', title: 'Arrival and final planning', desc: 'A driver meets you at the airport. The team re-scans, confirms the plan against the CBCT, and you go through the surgery step by step with the dentist who will perform it.', items: ['Airport transfer to your hotel', 'Final scan and photographs', 'Pre-op check with the anaesthetist', 'Consent walked through in German'] },
+      { when: 'DAY 2 · BUDAPEST', title: 'Implant placement', desc: 'Four to six implants are placed under sedation, guided by the 3D plan and a surgical guide. Any remaining unsalvageable teeth are removed in the same session, so you only go under once.', items: ['Sedation, no pain', '4–6 Straumann® or Neodent® implants', 'Extractions in the same session', 'Rest at your hotel by evening'] },
+      { when: 'WITHIN 48–72 HOURS', title: 'Temporary fixed bridge', desc: 'The in-house lab builds your fixed temporary acrylic bridge and it is screwed onto the implants within 48 to 72 hours of surgery. You fly home with teeth — eating soft food the same day.', items: ['Fixed temporary bridge fitted', 'Bite adjusted in the chair', 'Aftercare and diet briefing', 'Transfer back to the airport'] },
+      { when: 'AFTER 3–4 MONTHS', title: 'Final zirconia-ceramic bridge', desc: 'Once the implants have integrated you return to have the definitive zirconia-ceramic bridge fitted — significantly more resistant than the temporary. Follow-up examinations then continue in Zürich.', items: ['Definitive zirconia-ceramic bridge', 'Implant passport and warranty', 'Follow-up examinations', 'Annual check-up recommended'] }
+    ];
+    const days = dayData.map((d, i) => {
+      const on = this.state.day === i;
+      return {
+        ...d,
+        onClick: () => this.setState({ day: i }),
+        eyebrowColor: on ? 'color:#56d7ff' : 'color:rgba(255,255,255,.45)',
+        tabStyle: `padding:20px 22px;border-radius:20px;cursor:pointer;transition:all 200ms cubic-bezier(.2,.8,.2,1);color:${on ? '#fff' : 'rgba(255,255,255,.7)'};background:${on ? 'rgba(255,255,255,.1)' : 'transparent'};border:1px solid ${on ? 'rgba(86,215,255,.4)' : 'rgba(255,255,255,.1)'}`
+      };
+    });
+
+    const priceData = [
+      { label: 'All-on-X NeoArch (Neodent®) — per jaw', value: 'Custom quote' },
+      { label: 'All-on-X Pro Arch (Straumann®) — per jaw', value: 'Custom quote' },
+      { label: 'All-on-6 — per jaw', value: 'Custom quote' },
+      { label: 'Both jaws (upper + lower) — package', value: 'Custom quote' },
+      { label: 'Lifetime implant warranty', value: 'Included', included: true }
+    ];
+    const priceRows = priceData.map((p, i) => ({
+      ...p,
+      rowStyle: `display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;${i ? 'border-top:1px solid var(--color-neutral-100);' : ''}`,
+      valueStyle: `flex:none;font:700 13.5px/1 'Manrope';white-space:nowrap;${p.included ? 'color:var(--color-success)' : 'color:var(--color-primary-700)'}`
+    }));
+
+    const risks = [
+      { name: 'Implant loss', level: '1–5% risk', facts: [
+        { k: 'When does it occur', v: 'Typically in the first 3–6 months, during the osseointegration phase.' },
+        { k: 'Causes', v: 'Smoking, untreated diabetes, insufficient bone volume.' },
+        { k: 'Prevention', v: '3D planning, premium implants, smoking cessation support.' }
+      ] },
+      { name: 'Peri-implantitis', level: 'Depends on oral hygiene', facts: [
+        { k: 'What it is', v: 'Inflammation around the implant that may develop in the years after treatment if oral hygiene is poor.' },
+        { k: 'Prevention', v: 'Professional hygiene check every six months, precise home cleaning with a water flosser and interdental brushes, annual oral surgery follow-up.' }
+      ] },
+      { name: 'Transient post-operative symptoms', level: '3–7 days', facts: [
+        { k: 'Symptoms', v: 'Swelling, minor bleeding and a pressure sensation in the 3–7 days after surgery — a normal healing process.' },
+        { k: 'Treatment', v: 'Effectively managed with painkillers and cold compresses; symptoms gradually subside.' }
+      ] },
+      { name: 'Nerve involvement', level: 'Extremely rare', facts: [
+        { k: 'What it is', v: 'Temporary numbness of the lower jaw nerve — an extremely rare complication.' },
+        { k: 'Prevention', v: 'Precise 3D CBCT planning and the use of a surgical guide minimise the risk to a minimum.' }
+      ] },
+      { name: 'Bridge fracture', level: 'Temporary acrylic bridge', facts: [
+        { k: 'What it is', v: 'The temporary acrylic bridge may crack under heavy load, especially in cases of bruxism.' },
+        { k: 'Prevention', v: 'The final zirconia-ceramic bridge is significantly more resistant; following instructions and using a night guard for bruxism is recommended.' }
+      ] }
+    ];
+
+    const faqData = [
+      { q: 'How soon do I get fixed teeth?', a: 'A temporary fixed bridge is attached within 48 to 72 hours of surgery — you do not leave without teeth. The final, personalised zirconia-ceramic bridge is fitted after a 3–4 month healing period.' },
+      { q: 'Will I need bone grafting?', a: 'In most cases, no. The posterior implants are placed at an angle, which makes better use of the bone you already have. If bone loss is extreme and four implants cannot be stabilised, zygomatic implants or bone grafting is the solution — your CBCT scan gives the definitive answer.' },
+      { q: 'Should I have four implants or six?', a: 'It depends on your bone. The upper jaw typically has a softer structure, so six implants are more often chosen there; the lower jaw is generally denser, so four provide adequate stability. Four is also applicable with moderately reduced bone, where six requires good quality, sufficient bone.' },
+      { q: 'Can four implants really hold a whole arch?', a: 'Yes. The technique was developed by Dr. Paulo Malo in the 1990s and the documented 10-year success rate is ' + successRate + '. We place Straumann® Pro Arch or Neodent® NeoArch systems and register each implant in your implant passport.' },
+      { q: 'What does the price include?', a: 'The price covers 3D planning, the implants, both the temporary and the permanent bridge, follow-up examinations and the implant warranty. The exact figure is determined after a personal consultation — the surgical consultation and 3D CBCT are complimentary.' },
+      { q: 'What is covered by the warranty?', a: 'PureDental’s lifetime warranty applies to the implant, provided you maintain proper oral hygiene care. It is included in the treatment price. Regular check-ups — including an annual oral surgery follow-up — are part of keeping it valid.' },
+      { q: 'Is there anything that would rule me out?', a: 'A few situations require special consideration: severe uncontrolled systemic disease such as untreated diabetes or active chemotherapy, intravenous bisphosphonate treatment, heavy smoking of 10+ cigarettes a day, untreated bruxism, extreme bone loss, and pregnancy — which simply means postponing until after delivery. Most of these are workable; we discuss them honestly at the consultation.' }
+    ];
+    const faqs = faqData.map((f, i) => {
+      const on = this.state.faq === i;
+      return {
+        ...f,
+        toggle: () => this.setState(s => ({ faq: s.faq === i ? -1 : i })),
+        cardStyle: `border-radius:20px;overflow:hidden;transition:all 200ms cubic-bezier(.2,.8,.2,1);background:${on ? '#fff' : '#fbfcff'};border:1px solid ${on ? 'var(--color-primary-200)' : 'var(--color-border)'};box-shadow:${on ? '0 14px 40px rgba(8,19,49,.07)' : 'none'}`,
+        iconStyle: `flex:none;width:30px;height:30px;border-radius:999px;display:grid;place-items:center;font:700 17px/1 'Manrope';transition:all 200ms;transform:rotate(${on ? 45 : 0}deg);background:${on ? 'var(--gradient-primary)' : 'var(--color-primary-50)'};color:${on ? '#fff' : 'var(--color-primary-700)'}`,
+        bodyStyle: `overflow:hidden;transition:max-height 300ms cubic-bezier(.2,.8,.2,1),opacity 200ms;max-height:${on ? 400 : 0}px;opacity:${on ? 1 : 0}`
+      };
+    });
+
+    return {
+      successRate,
+      ratingLabel,
+      consultPrice: 'Complimentary',
+      heroStats: [
+        { big: '48–72 h', l1: 'Temporary fixed', l2: 'bridge after surgery' },
+        { big: '3–4 mo', l1: 'To the final', l2: 'zirconia bridge' },
+        { big: '4–6', l1: 'Implants for a', l2: 'complete arch' }
+      ],
+      anatomy,
+      caseTabs, activeCase: caseData[this.state.kase],
+      suitedFor: [
+        'Complete tooth loss, on one or both jaws',
+        'Wearing an uncomfortable, unstable removable denture',
+        'Significant bone loss where traditional implantation would require bone grafting',
+        'Suffering from advanced gum disease (periodontitis)',
+        'Wanting a fast, fixed prosthesis with a single surgery'
+      ],
+      considerations: [
+        'Severe, uncontrolled systemic disease: untreated diabetes, active chemotherapy',
+        'Bisphosphonate treatment, especially intravenous, for osteoporosis',
+        'Heavy smoking: 10+ cigarettes per day significantly impairs osseointegration',
+        'Untreated bruxism (teeth grinding) — manageable alongside a night guard',
+        'Extreme bone loss: if 4 implants cannot be stabilised, zygomatic implants or bone grafting is the solution',
+        'During pregnancy — should be postponed until after delivery'
+      ],
+      fourSixRows,
+      days, activeDay: dayData[this.state.day],
+      includes: [
+        'Surgical consultation and 3D CBCT imaging',
+        '4 premium implants (Straumann® or Neodent®)',
+        'Temporary fixed bridge within 48–72 hours',
+        'Final, personalised bridge after 3–4 months',
+        'Follow-up examinations, with an annual check-up recommended',
+        'PureDental lifetime implant warranty'
+      ],
+      priceRows,
+      risks,
+      reviews: [
+        { tag: 'PLACEHOLDER', quote: 'Patient testimonial to be supplied by the clinic — upper arch case.', name: 'Name pending', meta: 'Canton · upper All-on-4' },
+        { tag: 'PLACEHOLDER', quote: 'Patient testimonial to be supplied by the clinic — both arches.', name: 'Name pending', meta: 'Canton · both arches' },
+        { tag: 'PLACEHOLDER', quote: 'Patient testimonial to be supplied by the clinic — avoided grafting.', name: 'Name pending', meta: 'Canton · upper All-on-4' }
+      ],
+      faqs
+    };
+  }
+}
+</script>
+</body>
+</html>
