@@ -1,0 +1,8 @@
+:root{
+--radius-small:0.75rem;--radius-medium:1rem;--radius-large:1.5rem;--radius-xlarge:1.75rem;--radius-pill:999px;
+--shadow-small:0 8px 24px rgba(8,19,49,.05);--shadow-medium:0 18px 48px rgba(8,19,49,.08);--shadow-large:0 28px 80px rgba(8,19,49,.11);--shadow-brand-glow:0 18px 56px rgba(30,77,255,.2);
+--duration-fast:160ms; /* @kind other */
+--duration-normal:240ms; /* @kind other */
+--duration-slow:360ms; /* @kind other */
+--ease-standard:cubic-bezier(0.2,0.8,0.2,1); /* @kind other */
+}

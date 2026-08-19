@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/colors.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/typography.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/effects.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/base.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/components.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/styles.css">
+<script src="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:var(--color-surface-subtle);font-family:"Manrope",system-ui,sans-serif}
+a{color:#1e4dff;text-decoration:none}a:hover{color:#0c35d8}
+</style>
+</helmet>
+
+<div data-screen-label="01 Portal header" style="min-width:1240px;position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-border);padding:14px 40px;display:flex;align-items:center;gap:28px;white-space:nowrap">
+<div style="display:flex;align-items:center;gap:10px;flex:0 0 auto"><img src="assets/logo-mark-tooth.png" alt="" style="width:26px;height:26px;object-fit:contain"><span style="font:800 17px/1 'Manrope';letter-spacing:-.045em;color:#07143e">PUREDENTAL</span><span style="font:700 9.5px/1 'Manrope';letter-spacing:.16em;color:#1e4dff">SCHWEIZ 🇨🇭</span></div>
+<span style="padding:5px 12px;border-radius:999px;background:var(--color-primary-50);border:1px solid var(--color-primary-200);font:700 10.5px/1.6 'Manrope';letter-spacing:.12em;color:var(--color-primary-700);flex:0 0 auto">PATIENT PORTAL</span>
+<div style="margin-left:auto;display:flex;align-items:center;gap:20px;flex:0 0 auto">
+<div style="text-align:right"><div style="font:700 13.5px/1.3 'Manrope';color:#07143e">Markus Bühler</div><div style="font:500 12px/1.3 'Manrope';color:var(--color-text-secondary)">Case #CH-2481 · St. Gallen</div></div>
+<div style="width:40px;height:40px;border-radius:999px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;font:600 9px/1 'Manrope';color:var(--color-neutral-400)">FOTO</div>
+</div>
+</div>
+
+<div data-screen-label="02 Portal body" style="min-width:1240px;display:grid;grid-template-columns:340px 1fr;gap:40px;padding:36px 40px 72px;align-items:start">
+
+<div style="position:sticky;top:105px;display:flex;flex-direction:column;gap:18px">
+<div class="pd-card" style="padding:26px">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">YOUR PROGRESS</span>
+<div style="margin-top:14px;font:800 30px/1.05 'Manrope';letter-spacing:-.04em;color:#07143e">{{ progressPct }}</div>
+<div style="margin-top:12px;height:8px;border-radius:999px;background:var(--color-neutral-100);overflow:hidden"><div style="{{ barStyle }}"></div></div>
+<p style="margin:14px 0 0;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">{{ progressNote }}</p>
+</div>
+
+<div class="pd-card" style="padding:22px 24px">
+<div style="display:flex;flex-direction:column;position:relative">
+<div style="position:absolute;left:15px;top:18px;bottom:18px;width:2px;background:var(--color-neutral-100)"></div>
+<sc-for list="{{ nodes }}" as="n" hint-placeholder-count="9">
+<div onClick="{{ n.onClick }}" style="display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:center;padding:11px 8px;border-radius:14px;cursor:pointer;position:relative;z-index:1">
+<sc-if value="{{ n.isDone }}" hint-placeholder-val="{{ false }}"><span style="width:32px;height:32px;border-radius:999px;display:grid;place-items:center;background:var(--color-primary-50);border:1px solid var(--color-primary-200);color:var(--color-primary-700);font:800 13px/1 'Manrope'">✓</span></sc-if>
+<sc-if value="{{ n.isNow }}" hint-placeholder-val="{{ false }}"><span style="width:32px;height:32px;border-radius:999px;display:grid;place-items:center;background:var(--gradient-primary);border:1px solid transparent;color:#fff;font:800 13px/1 'Manrope';box-shadow:0 10px 26px rgba(30,77,255,.28)">{{ n.mark }}</span></sc-if>
+<sc-if value="{{ n.isNext }}" hint-placeholder-val="{{ true }}"><span style="width:32px;height:32px;border-radius:999px;display:grid;place-items:center;background:#fff;border:1px solid var(--color-border-strong);color:var(--color-neutral-400);font:800 13px/1 'Manrope'">{{ n.mark }}</span></sc-if>
+<div>
+<sc-if value="{{ n.isOpen }}" hint-placeholder-val="{{ false }}"><div style="font:700 14px/1.3 'Manrope';color:var(--color-primary-700)">{{ n.label }}</div></sc-if>
+<sc-if value="{{ n.isShut }}" hint-placeholder-val="{{ true }}"><div style="font:600 14px/1.3 'Manrope';color:#07143e">{{ n.label }}</div></sc-if>
+<div style="margin-top:3px;font:500 12px/1.3 'Manrope';color:var(--color-text-secondary)">{{ n.meta }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div class="pd-card" style="padding:24px;display:flex;flex-direction:column;gap:12px">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">YOUR COORDINATOR</span>
+<div style="display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;border-radius:999px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;font:600 9px/1 'Manrope';color:var(--color-neutral-400)">FOTO</div><div><div style="font:700 14px/1.3 'Manrope';color:#07143e">Frau Füle</div><div style="font:500 12.5px/1.3 'Manrope';color:var(--color-text-secondary)">Deutschsprachig · Mo–Fr 8–18</div></div></div>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="sm" dc-props="{{ fullWidthBtn }}" hint-size="auto,40px">Write on WhatsApp</x-import>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:24px">
+
+<sc-if value="{{ isWelcome }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div class="pd-card pd-card--elevated" style="padding:0;overflow:hidden">
+<div style="padding:44px 48px 36px;background:radial-gradient(circle at 88% 10%,rgba(86,215,255,.26),transparent 48%),linear-gradient(135deg,#f9fbff,#eef4ff)">
+<span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">WELCOME, MARKUS</span>
+<h1 style="margin:16px 0 14px;font:800 42px/1.06 'Manrope';letter-spacing:-.045em;color:#07143e;max-width:20ch">Everything about your treatment lives here</h1>
+<p style="margin:0;max-width:58ch;font:500 17px/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">One page instead of a folder of emails. You'll see exactly where your case stands, what we need from you, and what happens next — updated by Dr. Majtényi and Frau Füle as we go.</p>
+</div>
+<div style="padding:36px 48px 44px">
+<div style="height:340px;border-radius:24px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;text-align:center;font:600 11px/1.7 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-400)">▶ Welcome video placeholder<br>Dr. Majtényi · 90 seconds · German<br><span style="text-transform:none;letter-spacing:0;font-weight:500">"What happens now, and what I need from you"</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px">
+<div style="padding:22px;border-radius:20px;background:var(--color-surface-subtle);border:1px solid var(--color-border)"><div style="font:800 22px/1 'Manrope';letter-spacing:-.03em;color:#1e4dff">1</div><strong style="display:block;margin-top:10px;font:700 15px/1.3 'Manrope';color:#07143e">Follow your case live</strong><p style="margin:6px 0 0;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">Nine steps, each one updated the day it happens.</p></div>
+<div style="padding:22px;border-radius:20px;background:var(--color-surface-subtle);border:1px solid var(--color-border)"><div style="font:800 22px/1 'Manrope';letter-spacing:-.03em;color:#1e4dff">2</div><strong style="display:block;margin-top:10px;font:700 15px/1.3 'Manrope';color:#07143e">Everything in one place</strong><p style="margin:6px 0 0;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">X-rays, your written plan, travel details and the guarantee.</p></div>
+<div style="padding:22px;border-radius:20px;background:var(--color-surface-subtle);border:1px solid var(--color-border)"><div style="font:800 22px/1 'Manrope';letter-spacing:-.03em;color:#1e4dff">3</div><strong style="display:block;margin-top:10px;font:700 15px/1.3 'Manrope';color:#07143e">Sign when you're ready</strong><p style="margin:6px 0 0;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">No deadline, no pressure. The proposal waits for you.</p></div>
+</div>
+<div style="display:flex;gap:12px;margin-top:28px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" onClick="{{ goCurrent }}" hint-size="auto,56px">Go to where my case stands →</x-import><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="lg" hint-size="auto,56px">Download the welcome pack</x-import></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isStep }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div class="pd-card" style="padding:40px 44px">
+<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">{{ stepEyebrow }}</span><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Badge" hint-size="auto,28px">{{ stepStatus }}</x-import></div>
+<h1 style="margin:16px 0 12px;font:800 38px/1.08 'Manrope';letter-spacing:-.045em;color:#07143e;max-width:22ch">{{ stepTitle }}</h1>
+<p style="margin:0;max-width:62ch;font:500 16.5px/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ stepBody }}</p>
+<div style="height:260px;margin-top:28px;border-radius:20px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;text-align:center;font:600 11px/1.7 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-400)">{{ stepMedia }}</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+<div class="pd-card" style="padding:32px">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">WHAT WE NEED FROM YOU</span>
+<div style="display:flex;flex-direction:column;gap:14px;margin-top:18px">
+<sc-for list="{{ stepAsks }}" as="a" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start"><span style="width:28px;height:28px;flex:0 0 auto;border-radius:999px;background:var(--color-neutral-100);border:1px solid var(--color-border-strong);color:#1e4dff;display:flex;align-items:center;justify-content:center;line-height:1;font:800 13px/1 'Manrope'">›</span><span style="padding-top:4px;font:500 14.5px/1.55 'Manrope';color:var(--color-text-secondary)"><strong style="color:#07143e;font-weight:700">{{ a.label }}</strong> {{ a.text }}</span></div>
+</sc-for>
+</div>
+<div style="margin-top:24px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="md" dc-props="{{ fullWidthBtn }}" hint-size="auto,48px">{{ stepCta }}</x-import></div>
+</div>
+<div class="pd-card" style="padding:32px">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">WHAT HAPPENS NEXT</span>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:18px">
+<sc-for list="{{ stepNext }}" as="s" hint-placeholder-count="3">
+<div style="padding-bottom:16px;border-bottom:1px solid var(--color-neutral-100)"><div style="font:600 11.5px/1 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)">{{ s.when }}</div><div style="margin-top:8px;font:600 14.5px/1.5 'Manrope';color:#07143e">{{ s.what }}</div></div>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:12px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="md" onClick="{{ goPrev }}" hint-size="auto,48px">← Previous</x-import><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="md" onClick="{{ goNext }}" hint-size="auto,48px">Next →</x-import></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProposal }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:24px">
+
+<div class="pd-card pd-card--elevated" style="padding:0;overflow:hidden;border-color:var(--color-primary-200)">
+<div style="padding:40px 48px 32px;background:radial-gradient(circle at 88% 10%,rgba(86,215,255,.26),transparent 48%),linear-gradient(135deg,#f9fbff,#eef4ff)">
+<div style="display:flex;align-items:center;gap:12px"><span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">YOUR TREATMENT PROPOSAL</span><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Badge" hint-size="auto,28px">Ready to review</x-import></div>
+<h1 style="margin:16px 0 12px;font:800 40px/1.06 'Manrope';letter-spacing:-.045em;color:#07143e">All-on-4, upper jaw</h1>
+<p style="margin:0;max-width:58ch;font:500 16.5px/1.6 'Manrope';color:var(--color-text-secondary)">Prepared personally by Dr. Zsolt Majtényi on 14 August 2026, after your consultation in Zürich and a review of your CT scan. Valid for 90 days.</p>
+</div>
+<div style="padding:36px 48px 40px">
+<div style="height:360px;border-radius:24px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;text-align:center;font:600 11px/1.7 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-400)">▶ Video intro placeholder<br>Dr. Majtényi walks through your plan · 3 min<br><span style="text-transform:none;letter-spacing:0;font-weight:500">"Markus, here's what I'm proposing and why"</span></div>
+<p style="margin:18px 0 0;font:500 14px/1.6 'Manrope';color:var(--color-text-secondary)">Watch this first — it takes three minutes and explains every line below in plain German, including the two decisions I'd like you to make.</p>
+</div>
+</div>
+
+<div class="pd-card" style="padding:0;overflow:hidden">
+<div style="padding:28px 34px;background:var(--color-surface-subtle);border-bottom:1px solid var(--color-border)"><span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">ITEMISED PLAN</span><h2 style="margin:12px 0 0;font:800 26px/1.18 'Manrope';letter-spacing:-.035em;color:#07143e">What is being done, and what it costs</h2></div>
+<sc-for list="{{ proposalLines }}" as="l" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:1fr 150px 150px;gap:24px;padding:22px 34px;border-top:1px solid var(--color-neutral-100);align-items:baseline">
+<div><strong style="font:700 16px/1.35 'Manrope';color:#07143e">{{ l.name }}</strong><p style="margin:6px 0 0;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">{{ l.note }}</p></div>
+<span style="text-align:right;font:500 14px/1.4 'Manrope';color:var(--color-text-secondary)">{{ l.qty }}</span>
+<span style="text-align:right;font:700 17px/1.4 'Manrope';color:#07143e">{{ l.price }}</span>
+</div>
+</sc-for>
+<div style="display:grid;grid-template-columns:1fr 150px 150px;gap:24px;padding:26px 34px;border-top:1px solid var(--color-border);background:var(--color-surface-subtle);align-items:baseline">
+<strong style="font:800 18px/1.3 'Manrope';letter-spacing:-.02em;color:#07143e">Total, all-inclusive</strong>
+<span style="text-align:right;font:500 13px/1.4 'Manrope';color:var(--color-text-secondary)">In Switzerland CHF 18,000</span>
+<span style="text-align:right;font:800 26px/1.1 'Manrope';letter-spacing:-.04em;color:#07143e">CHF 8,900</span>
+</div>
+<div style="padding:20px 34px;border-top:1px solid var(--color-neutral-100);display:flex;align-items:center;justify-content:space-between;gap:20px"><span style="font:600 14px/1.4 'Manrope';color:var(--color-text-secondary)">Your saving against the Zürich quote you sent us</span><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Badge" hint-size="auto,32px">CHF 9,100 · 51%</x-import></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+<div class="pd-card" style="padding:32px">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">INCLUDED IN THE PRICE</span>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:18px">
+<sc-for list="{{ included }}" as="i" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start"><span style="width:28px;height:28px;flex:0 0 auto;border-radius:999px;background:var(--color-neutral-100);border:1px solid var(--color-border-strong);color:#1e4dff;display:flex;align-items:center;justify-content:center;line-height:1;font:800 12px/1 'Manrope'">✓</span><span style="padding-top:4px;font:500 14.5px/1.5 'Manrope';color:var(--color-text-secondary)">{{ i.text }}</span></div>
+</sc-for>
+</div>
+</div>
+<div class="pd-card" style="padding:32px">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">YOUR SCHEDULE</span>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:18px">
+<sc-for list="{{ schedule }}" as="s" hint-placeholder-count="4">
+<div style="padding-bottom:14px;border-bottom:1px solid var(--color-neutral-100)"><div style="font:600 11.5px/1 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)">{{ s.when }}</div><div style="margin-top:8px;font:600 14.5px/1.5 'Manrope';color:#07143e">{{ s.what }}</div></div>
+</sc-for>
+</div>
+<div style="margin-top:20px;padding:18px 20px;border-radius:16px;background:var(--color-primary-50);border:1px solid var(--color-primary-200)"><strong style="font:700 14px/1.4 'Manrope';color:var(--color-primary-800)">Guarantee: up to 10 years</strong><p style="margin:6px 0 0;font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">Signed PDF attached to this proposal, with CHF 300 travel cover for any warranty work.</p></div>
+</div>
+</div>
+
+<div class="pd-card" style="padding:40px 44px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap">
+<div>
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">BEFORE YOU DECIDE</span>
+<h2 style="margin:14px 0 8px;font:800 28px/1.16 'Manrope';letter-spacing:-.035em;color:#07143e">700+ satisfied patients signed the same page</h2>
+<p style="margin:0;max-width:60ch;font:500 15px/1.6 'Manrope';color:var(--color-text-secondary)">Swiss patients who held this exact proposal a year or two ago, in their own words.</p>
+</div>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.RatingStars" label="4.9 on Google · 700+ patients" hint-size="auto,22px"></x-import>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px">
+<div style="padding:26px;border-radius:20px;background:var(--color-surface-subtle);border:1px solid var(--color-border);display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;flex:1 1 auto;font:600 16px/1.45 'Manrope';letter-spacing:-.015em;color:#07143e;text-wrap:pretty">"I read the proposal four times before I signed. Two years on, not one line of it turned out differently."</p>
+<div style="display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--color-neutral-100)"><div style="width:38px;height:38px;border-radius:999px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;font:600 8px/1 'Manrope';color:var(--color-neutral-400)">FOTO</div><div><div style="font:700 13.5px/1.3 'Manrope';color:#07143e">Peter, 66</div><div style="font:500 12.5px/1.3 'Manrope';color:var(--color-text-secondary)">All-on-6 · Luzern</div></div></div>
+</div>
+<div style="padding:26px;border-radius:20px;background:var(--color-surface-subtle);border:1px solid var(--color-border);display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;flex:1 1 auto;font:600 16px/1.45 'Manrope';letter-spacing:-.015em;color:#07143e;text-wrap:pretty">"What convinced me was that the price on the last page was the price I actually paid. Nothing appeared afterwards."</p>
+<div style="display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--color-neutral-100)"><div style="width:38px;height:38px;border-radius:999px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;font:600 8px/1 'Manrope';color:var(--color-neutral-400)">FOTO</div><div><div style="font:700 13.5px/1.3 'Manrope';color:#07143e">Anna, 71</div><div style="font:500 12.5px/1.3 'Manrope';color:var(--color-text-secondary)">Full mouth · Zürich</div></div></div>
+</div>
+<div style="padding:26px;border-radius:20px;background:var(--color-surface-subtle);border:1px solid var(--color-border);display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;flex:1 1 auto;font:600 16px/1.45 'Manrope';letter-spacing:-.015em;color:#07143e;text-wrap:pretty">"Dr. Majtényi called me himself the evening before surgery. In Zürich I never got past the receptionist."</p>
+<div style="display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--color-neutral-100)"><div style="width:38px;height:38px;border-radius:999px;background:var(--color-neutral-100);border:1px dashed var(--color-neutral-200);display:grid;place-items:center;font:600 8px/1 'Manrope';color:var(--color-neutral-400)">FOTO</div><div><div style="font:700 13.5px/1.3 'Manrope';color:#07143e">Robert, 58</div><div style="font:500 12.5px/1.3 'Manrope';color:var(--color-text-secondary)">Six implants · Bern</div></div></div>
+</div>
+</div>
+<p style="margin:22px 0 0;max-width:66ch;font:500 15px/1.6 'Manrope';color:var(--color-text-secondary)">Happy to be put in touch with any of them before you sign — several have offered to take calls from patients in your position.</p>
+</div>
+
+<div class="pd-card pd-card--elevated" style="padding:40px 44px;border-color:var(--color-primary-200)">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">ACCEPTANCE</span>
+<h2 style="margin:14px 0 10px;font:800 28px/1.16 'Manrope';letter-spacing:-.035em;color:#07143e">Sign when you're ready — not before</h2>
+<p style="margin:0 0 24px;max-width:64ch;font:500 15px/1.6 'Manrope';color:var(--color-text-secondary)">Signing confirms the plan and price above and reserves your surgical week. It is not a payment — the first instalment is due when treatment begins.</p>
+<sc-if value="{{ notSigned }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Input" placeholder="Type your full name" hint-size="100%,52px"></x-import>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Input" placeholder="Date" hint-size="100%,52px"></x-import>
+</div>
+<div style="margin-top:16px;height:130px;border-radius:16px;border:1.5px dashed var(--color-primary-200);background:var(--color-primary-50);display:grid;place-items:center;text-align:center;font:600 13px/1.6 'Manrope';color:var(--color-primary-700)">Draw your signature here<br><span style="font-weight:500;color:var(--color-text-secondary)">or type your name above to sign electronically</span></div>
+<div style="display:flex;align-items:flex-start;gap:12px;margin-top:18px"><span style="width:20px;height:20px;border-radius:6px;border:1.5px solid var(--color-border-strong);flex:0 0 auto"></span><span style="font:500 13.5px/1.55 'Manrope';color:var(--color-text-secondary)">I have read the treatment plan, the guarantee terms and the Pure-Package contents, and I accept them.</span></div>
+<div style="display:flex;gap:12px;margin-top:24px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" onClick="{{ sign }}" hint-size="auto,56px">Sign and reserve my week</x-import><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="lg" hint-size="auto,56px">Download as PDF</x-import><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="ghost" size="lg" hint-size="auto,56px">Ask a question first</x-import></div>
+</div>
+</sc-if>
+<sc-if value="{{ signed }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:28px 32px;border-radius:20px;background:var(--color-primary-50);border:1px solid var(--color-primary-200)">
+<div style="display:flex;align-items:center;gap:14px"><span style="width:40px;height:40px;border-radius:999px;background:var(--gradient-primary);color:#fff;display:grid;place-items:center;font:800 16px/1 'Manrope'">✓</span><div><strong style="font:700 18px/1.3 'Manrope';color:#07143e">Signed on 19 August 2026</strong><div style="margin-top:4px;font:500 13.5px/1.4 'Manrope';color:var(--color-text-secondary)">Markus Bühler · countersigned by Dr. Zsolt Majtényi</div></div></div>
+<p style="margin:18px 0 0;max-width:64ch;font:500 14.5px/1.6 'Manrope';color:var(--color-text-secondary)">Your surgical week is reserved. Frau Füle will send flight options within two working days, and your travel step in the timeline is now open.</p>
+</div>
+<div style="display:flex;gap:12px;margin-top:22px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" onClick="{{ goTravel }}" hint-size="auto,56px">Open my travel step →</x-import><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="lg" hint-size="auto,56px">Download signed copy (PDF)</x-import></div>
+</div>
+</sc-if>
+</div>
+
+</div>
+</sc-if>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280}}">
+const NODES = [
+  { kind: "welcome", label: "Welcome", meta: "Read · 12 Aug", mark: "0" },
+  {
+    kind: "step", label: "X-ray and first plan", meta: "Done · 12 Aug", mark: "1",
+    eyebrow: "STEP 1 OF 7 · COMPLETE", status: "Done", title: "Your X-ray reached Dr. Majtényi",
+    body: "You uploaded a panoramic X-ray on 12 August. Dr. Majtényi reviewed it personally the same evening and came back with a first estimate within 24 hours — the document is stored below and stays available to you.",
+    media: "Your panoramic X-ray · uploaded 12 Aug",
+    asks: [
+      { label: "Nothing right now.", text: "This step is closed. We keep the file for the whole guarantee period." },
+      { label: "Check the estimate.", text: "The first figure was CHF 8,600–9,400 — the final proposal sits inside that range." },
+      { label: "Add anything you forgot.", text: "Old crowns, medication, past surgery — it all changes the plan." }
+    ],
+    cta: "View my X-ray and first estimate",
+    next: [
+      { when: "12 Aug", what: "X-ray received and read by Dr. Majtényi" },
+      { when: "13 Aug", what: "First written estimate sent to you by email" },
+      { when: "14 Aug", what: "Consultation in Zürich booked" }
+    ]
+  },
+  {
+    kind: "step", label: "Swiss consultation", meta: "Done · 14 Aug", mark: "2",
+    eyebrow: "STEP 2 OF 7 · COMPLETE", status: "Done", title: "You met Dr. Majtényi in Zürich",
+    body: "A full examination, a CT scan and forty minutes of questions — at no cost, on Swiss soil, before committing to anything. Everything discussed that afternoon is written into the proposal now waiting for you.",
+    media: "Consultation notes · 14 Aug · Zürich",
+    asks: [
+      { label: "Read the notes.", text: "What was examined, what was decided, and the two options discussed." },
+      { label: "Recall the two choices.", text: "All-on-4 versus All-on-6 for the upper jaw — the proposal explains the recommendation." },
+      { label: "Share with your family.", text: "Most patients decide with someone. The notes are printable." }
+    ],
+    cta: "Open my consultation notes",
+    next: [
+      { when: "14 Aug", what: "Examination, CT scan and treatment discussion in Zürich" },
+      { when: "15 Aug", what: "CT scan analysed, bone volume confirmed sufficient" },
+      { when: "16 Aug", what: "Full proposal written and released to this portal" }
+    ]
+  },
+  { kind: "proposal", label: "Your proposal", meta: "Waiting for you", mark: "★" },
+  {
+    kind: "step", label: "Travel arranged", meta: "Opens after signing", mark: "3",
+    eyebrow: "STEP 3 OF 7 · NEXT", status: "Locked until you sign", title: "Flights, hotel and transfers, handled for you",
+    body: "Once the proposal is signed, Frau Füle sends three flight options, books the 4-star hotel two minutes from the clinic, and arranges the driver for both directions. You confirm; we book. Nothing is charged separately.",
+    media: "Travel pack preview · opens after signing",
+    asks: [
+      { label: "Your preferred week.", text: "Tell us two or three that suit — surgical slots are held on a first-come basis." },
+      { label: "Passport name.", text: "Exactly as printed, for the flight booking." },
+      { label: "Travelling with someone?", text: "The hotel room is a double either way, at no extra cost." }
+    ],
+    cta: "Tell us my preferred weeks",
+    next: [
+      { when: "Within 2 days of signing", what: "Three flight options and hotel confirmation" },
+      { when: "10 days before", what: "Driver details and the clinic's exact address" },
+      { when: "2 days before", what: "Pre-treatment instructions from Dr. Majtényi" }
+    ]
+  },
+  {
+    kind: "step", label: "Treatment in Budapest", meta: "Upcoming", mark: "4",
+    eyebrow: "STEP 4 OF 7 · UPCOMING", status: "Upcoming", title: "Five days in Budapest",
+    body: "Surgery on day one, fixed provisional teeth by day three, final checks on day five. Frau Füle is reachable the whole time, and Dr. Majtényi sees you every single day — not a rotating team.",
+    media: "Day-by-day schedule · opens 10 days before travel",
+    asks: [
+      { label: "Bring your medication list.", text: "Including anything over-the-counter you take regularly." },
+      { label: "Plan light days.", text: "Days two and four are free — most patients walk the city." },
+      { label: "Nothing to pay on arrival.", text: "The first instalment is settled at the clinic on day one." }
+    ],
+    cta: "See the day-by-day plan",
+    next: [
+      { when: "Day 1", what: "Implant placement under sedation, 3–4 hours" },
+      { when: "Day 3", what: "Fixed provisional bridge fitted" },
+      { when: "Day 5", what: "Final check, aftercare briefing, flight home" }
+    ]
+  },
+  {
+    kind: "step", label: "Home with everything", meta: "Upcoming", mark: "5",
+    eyebrow: "STEP 5 OF 7 · UPCOMING", status: "Upcoming", title: "You fly home with it all in writing",
+    body: "Aftercare instructions in German, the signed guarantee, your implant passport with serial numbers, and a direct WhatsApp line to Frau Füle. Everything also lands in this portal the day you land.",
+    media: "Aftercare pack · German · PDF preview",
+    asks: [
+      { label: "Read the first-week sheet.", text: "What to eat, what to avoid, and what is normal." },
+      { label: "Keep the implant passport.", text: "It proves the Straumann serial numbers for the rest of your life." },
+      { label: "Message us with anything.", text: "No question is too small in the first two weeks." }
+    ],
+    cta: "Preview the aftercare pack",
+    next: [
+      { when: "Day of return", what: "Documents uploaded here and emailed" },
+      { when: "Day 3 after", what: "Frau Füle checks in by WhatsApp" },
+      { when: "Week 2", what: "Photo review — you send two photos, we confirm healing" }
+    ]
+  },
+  {
+    kind: "step", label: "Follow-up in Switzerland", meta: "Upcoming", mark: "6",
+    eyebrow: "STEP 6 OF 7 · UPCOMING", status: "Upcoming", title: "Checks happen close to home",
+    body: "Your annual control is done at our Swiss consultation room, not in Budapest. Minor adjustments are handled there too. Only the final ceramic bridge needs one more trip, roughly four months after surgery.",
+    media: "Swiss consultation room · appointment booking",
+    asks: [
+      { label: "Book the annual check.", text: "It keeps the guarantee valid and costs nothing." },
+      { label: "Flag anything odd early.", text: "A small adjustment now beats a repair later." },
+      { label: "Second trip, month four.", text: "Two days in Budapest for the final bridge." }
+    ],
+    cta: "Book my Swiss follow-up",
+    next: [
+      { when: "Month 4", what: "Final ceramic bridge fitted in Budapest, two days" },
+      { when: "Month 12", what: "First annual control in Switzerland" },
+      { when: "Yearly", what: "Included control for the whole guarantee period" }
+    ]
+  },
+  {
+    kind: "step", label: "The long term", meta: "Upcoming", mark: "7",
+    eyebrow: "STEP 7 OF 7 · UPCOMING", status: "Upcoming", title: "Up to ten years, in writing",
+    body: "The guarantee runs up to ten years on the implants themselves, with travel costs covered up to CHF 300 if warranty work is ever needed. This portal stays open for the whole period — your documents don't expire with the treatment.",
+    media: "Your guarantee certificate · signed PDF",
+    asks: [
+      { label: "Keep attending the annual check.", text: "It is the one condition that keeps cover live." },
+      { label: "Store the certificate.", text: "It also lives here, permanently." },
+      { label: "Refer someone if you're happy.", text: "Most of our Swiss patients arrive this way." }
+    ],
+    cta: "Open my guarantee certificate",
+    next: [
+      { when: "Years 1–10", what: "Straumann implants covered" },
+      { when: "Years 1–5", what: "Zirconium crowns and bridges covered" },
+      { when: "Anytime", what: "Frau Füle and Dr. Majtényi remain your contacts" }
+    ]
+  }
+];
+
+const PROPOSAL_LINES = [
+  { name: "Straumann implants, upper jaw", note: "Four implants, two placed at an angle to reach solid bone and avoid grafting.", qty: "4 ×", price: "CHF 4,800" },
+  { name: "Fixed provisional bridge", note: "Placed within 72 hours of surgery — you never leave the clinic without teeth.", qty: "1 arch", price: "CHF 1,100" },
+  { name: "Final ceramic bridge", note: "Fitted at your second visit, about four months later. Shade matched to your lower teeth.", qty: "1 arch", price: "CHF 2,600" },
+  { name: "Extractions of three remaining upper teeth", note: "Done in the same session, under the same sedation.", qty: "3 ×", price: "CHF 255" },
+  { name: "Sedation, CT planning and surgical guide", note: "Digitally planned placement — the guide is why the surgery takes three hours, not six.", qty: "included", price: "CHF 145" }
+];
+
+const INCLUDED = [
+  { text: "Free consultation in Switzerland — already used, 14 August" },
+  { text: "Panoramic X-ray, CT scan and written treatment plan" },
+  { text: "Return airport transfers in Budapest" },
+  { text: "Five nights in the 4-star partner hotel, two minutes from the clinic" },
+  { text: "Frau Füle as your German-speaking coordinator, whole stay" },
+  { text: "Up to 10-year written guarantee and annual Swiss check-ups" },
+  { text: "CHF 200 flight reimbursement, paid once treatment starts" }
+];
+
+const SCHEDULE = [
+  { when: "Week you choose", what: "Five days in Budapest — surgery day 1, fixed teeth by day 3" },
+  { when: "Two weeks after", what: "Photo review by WhatsApp, no travel" },
+  { when: "Month 4", what: "Two days in Budapest for the final ceramic bridge" },
+  { when: "Month 12, then yearly", what: "Annual control at our Swiss consultation room" }
+];
+
+const SIGNED_META = { 3: "Signed · 19 Aug", 4: "Open · your dates needed" };
+
+const SIGNED_OVERRIDES = {
+  4: {
+    eyebrow: "STEP 3 OF 7 · IN PROGRESS", status: "Open · awaiting your dates",
+    title: "Your travel is being arranged now",
+    body: "The proposal is signed and your surgical week is reserved. Frau Füle is putting together three flight options and confirming the 4-star hotel two minutes from the clinic — she needs your preferred weeks to finish the booking. Nothing here is charged separately.",
+    media: "Travel pack · flight options arriving within 2 working days",
+    cta: "Send my preferred weeks",
+    next: [
+      { when: "Within 2 days", what: "Three flight options and hotel confirmation from Frau Füle" },
+      { when: "10 days before", what: "Driver details and the clinic's exact address" },
+      { when: "2 days before", what: "Pre-treatment instructions from Dr. Majtényi" }
+    ]
+  }
+};
+
+class Component extends DCLogic {
+  state = { at: 0, signed: false };
+  CURRENT = 3;
+
+  renderVals() {
+    const { at, signed } = this.state;
+    const base = NODES[at] || NODES[0];
+    const node = (signed && SIGNED_OVERRIDES[at]) ? Object.assign({}, base, SIGNED_OVERRIDES[at]) : base;
+    const done = signed ? this.CURRENT + 1 : this.CURRENT;
+    const pct = Math.round((done / (NODES.length - 1)) * 100);
+
+    return {
+      fullWidthBtn: { style: { width: "100%", justifyContent: "center" } },
+      progressPct: `${pct}% complete`,
+      barStyle: `height:8px;width:${pct}%;border-radius:999px;background:var(--gradient-primary)`,
+      progressNote: signed
+        ? "Proposal signed. Frau Füle is preparing your flight options now."
+        : "Your proposal is ready and waiting for your signature. Nothing moves until you're comfortable.",
+
+      nodes: NODES.map((n, i) => ({
+        label: n.label, meta: (signed && SIGNED_META[i]) ? SIGNED_META[i] : n.meta, mark: n.mark,
+        isDone: i < done, isNow: i === done, isNext: i > done,
+        isOpen: i === at, isShut: i !== at,
+        onClick: () => this.setState({ at: i })
+      })),
+
+      isWelcome: node.kind === "welcome",
+      isStep: node.kind === "step",
+      isProposal: node.kind === "proposal",
+
+      stepEyebrow: node.eyebrow, stepStatus: node.status, stepTitle: node.title,
+      stepBody: node.body, stepMedia: node.media, stepAsks: node.asks || [],
+      stepNext: node.next || [], stepCta: node.cta,
+
+      goCurrent: () => this.setState({ at: this.CURRENT }),
+      goPrev: () => this.setState({ at: Math.max(0, at - 1) }),
+      goNext: () => this.setState({ at: Math.min(NODES.length - 1, at + 1) }),
+      goTravel: () => this.setState({ at: 4 }),
+
+      proposalLines: PROPOSAL_LINES, included: INCLUDED, schedule: SCHEDULE,
+      signed: signed, notSigned: !signed,
+      sign: () => this.setState({ signed: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

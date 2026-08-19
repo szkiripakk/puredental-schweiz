@@ -1,0 +1,10 @@
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--color-text-primary);background:var(--color-background);font-family:var(--font-primary);font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+img,picture,svg{display:block;max-width:100%}
+button,input,textarea,select{font:inherit}
+a{color:var(--color-primary-600);text-decoration:none}
+a:hover{color:var(--color-primary-700);text-decoration:underline}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--color-focus),transparent 24%);outline-offset:4px}
+h1,h2,h3,h4,p{margin-top:0}
+h1,h2,h3,h4{letter-spacing:-0.035em;line-height:1.08;font-weight:var(--font-weight-extrabold)}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/colors.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/typography.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/effects.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/base.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/tokens/components.css">
+<link rel="stylesheet" href="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/styles.css">
+<script src="_ds/puredental-schweiz-design-system-cb06668f-064e-4789-ba29-34e4bd256f23/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#fff;font-family:"Manrope",system-ui,sans-serif}
+.pf-row{overflow:hidden;transition:max-height 340ms cubic-bezier(.2,.8,.2,1),opacity 200ms ease,transform 340ms cubic-bezier(.2,.8,.2,1)}
+.pf-full{max-height:280px;opacity:1;transform:translateY(0)}
+.pf-full.is-min{max-height:0;opacity:0;transform:translateY(-6px)}
+.pf-mini{max-height:0;opacity:0;transform:translateY(-6px)}
+.pf-mini.is-min{max-height:15vh;opacity:1;transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){.pf-row{transition:none}}
+a{color:#1e4dff;text-decoration:none}a:hover{color:#0c35d8}
+</style>
+</helmet>
+
+<div data-screen-label="01 Sticky nav" style="position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-border);padding:16px 56px;display:flex;align-items:center;gap:36px;min-width:1180px">
+<div style="display:flex;align-items:center;gap:10px;flex:0 0 auto;white-space:nowrap"><img src="assets/logo-mark-tooth.png" alt="" style="width:26px;height:26px;object-fit:contain"><span style="font:800 19px/1 'Manrope';letter-spacing:-.045em;color:#07143e">PUREDENTAL</span><span style="font:700 10px/1 'Manrope';letter-spacing:.16em;color:#1e4dff">SCHWEIZ 🇨🇭</span></div>
+<nav style="display:flex;gap:26px;font:600 13.5px/1 'Manrope';color:var(--color-text-secondary);flex:0 0 auto;white-space:nowrap"><span>Treatments</span><span>How it works</span><span style="color:#07143e;font-weight:700">Prices</span><span>Guarantee</span><span>Reviews</span></nav>
+<div style="margin-left:auto;display:flex;align-items:center;gap:18px;flex:0 0 auto;white-space:nowrap"><span style="font:700 13.5px/1 'Manrope';color:#07143e">+41 XX XXX XX XX</span><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="sm" hint-size="auto,40px">Free quote</x-import></div>
+</div>
+
+<div data-screen-label="02 Header" style="min-width:1180px;padding:72px 56px 40px;background:radial-gradient(circle at 84% 8%,rgba(86,215,255,.26),transparent 46%),linear-gradient(135deg,#f9fbff,#eef4ff)">
+<div style="max-width:1180px;margin:0 auto">
+<span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">PRICES</span>
+<h1 style="margin:16px 0 14px;font:800 54px/1.04 'Manrope';letter-spacing:-.05em;color:#07143e;max-width:18ch">What your treatment costs</h1>
+<p style="margin:0;max-width:52ch;font:500 18px/1.55 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ heroLead }}</p>
+<div style="display:flex;gap:1px;margin-top:32px;border-radius:20px;overflow:hidden;background:var(--color-border);border:1px solid var(--color-border);max-width:720px">
+<div style="background:rgba(255,255,255,.86);padding:18px 24px;flex:1"><div style="font:800 24px/1 'Manrope';letter-spacing:-.04em;color:#07143e">up to 52%</div><div style="margin-top:6px;font:600 11.5px/1.4 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)">Below Swiss prices</div></div>
+<div style="background:rgba(255,255,255,.86);padding:18px 24px;flex:1"><div style="font:800 24px/1 'Manrope';letter-spacing:-.04em;color:#07143e">24 h</div><div style="margin-top:6px;font:600 11.5px/1.4 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)">To your written quote</div></div>
+<div style="background:rgba(255,255,255,.86);padding:18px 24px;flex:1"><div style="font:800 24px/1 'Manrope';letter-spacing:-.04em;color:#07143e">CHF 0</div><div style="margin-top:6px;font:600 11.5px/1.4 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary)">Hidden costs, ever</div></div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="03 Filter customizer" style="min-width:1180px;position:sticky;top:73px;z-index:15;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-border)">
+<div class="pf-row pf-mini {{ minState }}">
+<div style="max-width:1180px;margin:0 auto;padding:12px 56px;display:flex;align-items:center;gap:12px;flex-wrap:nowrap;white-space:nowrap">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff;flex:0 0 auto">FILTERED</span>
+<sc-for list="{{ needChips }}" as="c" hint-placeholder-count="7">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><span onClick="{{ c.onClick }}" style="display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;cursor:pointer;font:700 12px/1 'Manrope';background:var(--gradient-primary);color:#fff;border:1px solid transparent;box-shadow:0 8px 20px rgba(30,77,255,.2)">{{ c.label }}</span></sc-if>
+<sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><span onClick="{{ c.onClick }}" style="display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;cursor:pointer;font:600 12px/1 'Manrope';background:#fff;color:var(--color-text-secondary);border:1px solid var(--color-border);box-shadow:none">{{ c.label }}</span></sc-if>
+</sc-for>
+<div style="margin-left:auto;flex:0 0 auto"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="ghost" size="sm" onClick="{{ reset }}" hint-size="auto,32px">Reset</x-import></div>
+</div>
+</div>
+<div class="pf-row pf-full {{ minState }}">
+<div style="max-width:1180px;margin:0 auto;padding:22px 56px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:var(--color-text-secondary);width:104px">WHO YOU ARE</span>
+<sc-for list="{{ intentChips }}" as="c" hint-placeholder-count="3">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><span onClick="{{ c.onClick }}" style="display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:999px;cursor:pointer;font:700 13px/1 'Manrope';background:var(--gradient-primary);color:#fff;border:1px solid transparent;box-shadow:0 10px 28px rgba(30,77,255,.22)">{{ c.label }}</span></sc-if>
+<sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><span onClick="{{ c.onClick }}" style="display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:999px;cursor:pointer;font:600 13px/1 'Manrope';background:#fff;color:var(--color-text-secondary);border:1px solid var(--color-border);box-shadow:none">{{ c.label }}</span></sc-if>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:var(--color-text-secondary);width:104px">WHAT YOU NEED</span>
+<sc-for list="{{ needChips }}" as="c" hint-placeholder-count="7">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><span onClick="{{ c.onClick }}" style="display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:999px;cursor:pointer;font:700 13px/1 'Manrope';background:var(--gradient-primary);color:#fff;border:1px solid transparent;box-shadow:0 10px 28px rgba(30,77,255,.22)">{{ c.label }}</span></sc-if>
+<sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><span onClick="{{ c.onClick }}" style="display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:999px;cursor:pointer;font:600 13px/1 'Manrope';background:#fff;color:var(--color-text-secondary);border:1px solid var(--color-border);box-shadow:none">{{ c.label }}</span></sc-if>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--color-neutral-100)">
+<span style="font:600 13.5px/1.4 'Manrope';color:#07143e">{{ resultSummary }}</span>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="ghost" size="sm" onClick="{{ reset }}" hint-size="auto,36px">Reset filters</x-import>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="04 Guided recommendation" style="min-width:1180px;padding:44px 56px 0">
+<div style="max-width:1180px;margin:0 auto">
+<div class="pd-card pd-card--elevated" style="padding:36px 40px;border-color:var(--color-primary-200);display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:center">
+<div>
+<span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">{{ recEyebrow }}</span>
+<h2 style="margin:14px 0 10px;font:800 30px/1.16 'Manrope';letter-spacing:-.035em;color:#07143e">{{ recTitle }}</h2>
+<p style="margin:0;max-width:62ch;font:500 15.5px/1.6 'Manrope';color:var(--color-text-secondary);text-wrap:pretty">{{ recBody }}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" dc-props="{{ fullWidthBtn }}" hint-size="auto,56px">{{ recCta }}</x-import>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="md" dc-props="{{ fullWidthBtn }}" hint-size="auto,48px">{{ recCtaAlt }}</x-import>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="05 Price list" style="min-width:1180px;padding:44px 56px 88px">
+<div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+<sc-for list="{{ categories }}" as="cat" hint-placeholder-count="4">
+<div class="pd-card" style="padding:0;overflow:hidden">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 34px;background:var(--color-surface-subtle);border-bottom:1px solid var(--color-border)">
+<div><span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#1e4dff">{{ cat.eyebrow }}</span><h3 style="margin:12px 0 6px;font:800 26px/1.18 'Manrope';letter-spacing:-.035em;color:#07143e">{{ cat.name }}</h3><p style="margin:0;max-width:64ch;font:500 14.5px/1.6 'Manrope';color:var(--color-text-secondary)">{{ cat.blurb }}</p></div>
+<span style="flex:0 0 auto;font:600 12.5px/1 'Manrope';color:var(--color-text-secondary)">{{ cat.count }}</span>
+</div>
+<sc-for list="{{ cat.items }}" as="it" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:1fr 260px;gap:40px;padding:30px 34px;border-top:1px solid var(--color-neutral-100)">
+<div>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><strong style="font:700 20px/1.25 'Manrope';letter-spacing:-.025em;color:#07143e">{{ it.name }}</strong><sc-if value="{{ it.flag }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Badge" hint-size="auto,28px">{{ it.flag }}</x-import></sc-if></div>
+<div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
+<sc-for list="{{ it.points }}" as="p" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start"><span style="color:#1e4dff;font:800 14px/1.5 'Manrope'">✓</span><span style="font:500 14.5px/1.5 'Manrope';color:var(--color-text-secondary)"><strong style="color:#07143e;font-weight:700">{{ p.label }}</strong> {{ p.text }}</span></div>
+</sc-for>
+</div>
+</div>
+<div style="text-align:right">
+<span style="font:600 11px/1 'Manrope';letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-secondary)">{{ it.metricLabel }}</span>
+<div style="margin-top:8px;font:800 34px/1.05 'Manrope';letter-spacing:-.045em;color:#07143e">{{ it.metric }}</div>
+<div style="margin-top:6px;font:500 13.5px/1.5 'Manrope';color:var(--color-text-secondary)">{{ it.sub }}</div>
+<div style="display:flex;justify-content:flex-end;margin-top:14px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Badge" hint-size="auto,30px">−{{ it.pct }}</x-import></div>
+<div style="display:flex;justify-content:flex-end;margin-top:16px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="secondary" size="sm" hint-size="auto,40px">Get this quoted</x-import></div>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-for>
+<p style="margin:8px 0 0;max-width:76ch;font:500 13.5px/1.65 'Manrope';color:var(--color-text-secondary)">Every price includes the Pure-Package: free Swiss consultation, panoramic X-ray and written plan, airport transfers, 4-star hotel by the clinic, a German-speaking coordinator, and the written guarantee. Swiss comparison figures are typical private-practice prices in the Zürich region.</p>
+</div>
+</div>
+
+<div data-screen-label="06 Contact" style="min-width:1180px;padding:88px 56px;background:var(--gradient-primary);position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background:radial-gradient(circle at 82% 12%,rgba(86,215,255,.32),transparent 48%)"></div>
+<div style="position:relative;max-width:620px;margin:0 auto;text-align:center">
+<span style="font:700 11px/1 'Manrope';letter-spacing:.14em;color:#cff5ff">YOUR EXACT PRICE, IN 24 HOURS</span>
+<h2 style="margin:16px 0 14px;font:800 42px/1.06 'Manrope';letter-spacing:-.045em;color:#fff">{{ contactTitle }}</h2>
+<p style="margin:0 auto 36px;max-width:46ch;font:500 16.5px/1.55 'Manrope';color:rgba(255,255,255,.82);text-wrap:pretty">{{ contactLead }}</p>
+<div class="pd-card" style="padding:40px;text-align:left;border:none;background:#fff;box-shadow:0 40px 100px rgba(3,10,32,.3)">
+<div style="display:flex;flex-direction:column;gap:14px">
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Input" placeholder="Name" hint-size="100%,52px"></x-import>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Input" placeholder="Email" hint-size="100%,52px"></x-import>
+<x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Input" placeholder="WhatsApp (optional)" hint-size="100%,52px"></x-import>
+<div style="padding:16px 18px;border-radius:16px;background:var(--color-primary-50);border:1px solid var(--color-primary-200)"><span style="font:600 12px/1 'Manrope';letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary-700)">Attached to your enquiry</span><p style="margin:8px 0 0;font:600 14.5px/1.5 'Manrope';color:#07143e">{{ contactContext }}</p></div>
+<div style="min-height:96px;border:1.5px dashed var(--color-primary-200);border-radius:16px;background:var(--color-primary-50);display:grid;place-items:center;text-align:center;font:600 13px/1.5 'Manrope';color:var(--color-primary-700)">{{ contactUpload }}<span style="display:block;font-weight:500;color:var(--color-text-secondary)">JPG · PNG · PDF</span></div>
+</div>
+<div style="margin-top:20px"><x-import component-from-global-scope="PureDentalSchweizDesignSystem_cb0666.Button" variant="primary" size="lg" dc-props="{{ fullWidthBtn }}" hint-size="auto,56px">Send and get my written quote</x-import></div>
+<p style="margin:16px 0 0;text-align:center;font:500 12.5px/1.6 'Manrope';color:var(--color-text-secondary)">GDPR-compliant · data stays in the EU · we write back, never cold-call.</p>
+</div>
+</div>
+</div>
+
+<div data-screen-label="07 Footer" style="min-width:1180px;padding:56px 56px 40px;background:#07143e;color:#fff">
+<div style="max-width:1180px;margin:0 auto">
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.14)">
+<div><div style="display:flex;align-items:center;gap:10px"><img src="assets/logo-mark-tooth-light.png" alt="" style="width:26px;height:26px;object-fit:contain"><span style="font:800 19px/1 'Manrope';letter-spacing:-.045em">PUREDENTAL</span><span style="font:700 10px/1 'Manrope';letter-spacing:.16em;color:#56d7ff">SCHWEIZ 🇨🇭</span></div><p style="margin:12px 0 0;max-width:24em;font:500 14px/1.6 'Manrope';color:rgba(255,255,255,.6)">Swiss-coordinated dental care in Budapest.</p><p style="margin:18px 0 0;font:700 15px/1.6 'Manrope'">+41 XX XXX XX XX<br><span style="font-weight:500;color:rgba(255,255,255,.6)">WhatsApp · hello@puredental-schweiz.ch</span></p></div>
+<div><span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#56d7ff">TREATMENTS</span><p style="margin:12px 0 0;font:500 14px/1.8 'Manrope';color:rgba(255,255,255,.7)">All-on-4<br>All-on-6<br>Single implants<br>Crowns · Veneers<br>Full mouth</p></div>
+<div><span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#56d7ff">ABOUT</span><p style="margin:12px 0 0;font:500 14px/1.8 'Manrope';color:rgba(255,255,255,.7)">Dr. Majtényi<br>Our clinic<br>How it works<br>Guarantee<br>Reviews</p></div>
+<div><span style="font:700 10.5px/1 'Manrope';letter-spacing:.14em;color:#56d7ff">LEGAL</span><p style="margin:12px 0 0;font:500 14px/1.8 'Manrope';color:rgba(255,255,255,.7)">Imprint<br>Privacy<br>Cookies<br>Terms</p></div>
+</div>
+<div style="display:flex;justify-content:space-between;gap:32px;padding-top:24px;font:500 13px/1.6 'Manrope';color:rgba(255,255,255,.7)"><span><strong style="color:#fff">Swiss consultation</strong> · [address once secured]</span><span><strong style="color:#fff">Clinic</strong> · Margit körút 3, 1027 Budapest</span><span style="color:rgba(255,255,255,.45)">© 2026 PureDental Schweiz · ISO 9001 · GDPR</span></div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280}}">
+const NEEDS = [
+  { id: "all", label: "Everything" },
+  { id: "single", label: "One tooth" },
+  { id: "several", label: "Several teeth" },
+  { id: "arch", label: "A full arch" },
+  { id: "mouth", label: "The whole mouth" },
+  { id: "cosmetic", label: "Looks only" },
+  { id: "groundwork", label: "Groundwork first" }
+];
+
+const CATS = [
+  {
+    need: "single", eyebrow: "ONE MISSING OR DAMAGED TOOTH", name: "Single tooth",
+    blurb: "One gap, one crack, one old crown. The most common reason Swiss patients call us first.",
+    items: [
+      { name: "Implant + ceramic crown", flag: "Most chosen", price: "CHF 2,400", ref: "CHF 4,500", save: "CHF 2,100", pct: "47%", points: [
+        { label: "One price, three parts.", text: "Implant, abutment and crown are all in — nothing invoiced separately afterwards." },
+        { label: "Straumann, serial-numbered.", text: "Swiss-made, with the implant passport handed to you and verifiable with the maker." },
+        { label: "Neighbouring teeth untouched.", text: "Unlike a bridge, nothing healthy gets ground down to carry it." }
+      ]},
+      { name: "Zirconium crown", price: "CHF 550", ref: "CHF 1,700", save: "CHF 1,150", pct: "68%", points: [
+        { label: "Metal-free.", text: "No grey line at the gum as the years pass, and nothing to react to." },
+        { label: "Colour-matched in the clinic.", text: "Shade taken against your own teeth, not chosen from a catalogue." },
+        { label: "5-year written guarantee.", text: "Covers both how it looks and how it holds." }
+      ]}
+    ]
+  },
+  {
+    need: "several", eyebrow: "TWO TO FIVE TEETH", name: "Several missing teeth",
+    blurb: "Chewing has become awkward and the gaps are starting to move the teeth around them.",
+    items: [
+      { name: "Implant bridge on 2–3 implants", flag: "Best value", price: "CHF 5,900", ref: "CHF 12,400", save: "CHF 6,500", pct: "52%", points: [
+        { label: "Fewer implants than teeth.", text: "Three implants can carry four or five teeth — you pay for the hardware you need, not per gap." },
+        { label: "Fixed, not removable.", text: "It stays in. Nothing to take out at night, nothing that clicks while you eat." },
+        { label: "Planned in one visit.", text: "Placed and provisionally restored in the same trip to Budapest." }
+      ]},
+      { name: "Metal-ceramic bridge", price: "CHF 1,450", ref: "CHF 3,600", save: "CHF 2,150", pct: "60%", points: [
+        { label: "For when implants aren't an option.", text: "Uses your own teeth as anchors — a solid answer where bone is thin." },
+        { label: "Three-unit price shown.", text: "The figure covers all three units, not one unit multiplied later." },
+        { label: "3-year guarantee.", text: "On function and structural integrity." }
+      ]}
+    ]
+  },
+  {
+    need: "arch", eyebrow: "AN ENTIRE UPPER OR LOWER JAW", name: "A full arch",
+    blurb: "A whole jaw restored on four or six implants — fixed teeth within days, not months.",
+    items: [
+      { name: "All-on-4 — one arch", flag: "Most chosen", price: "CHF 8,900", ref: "CHF 18,000", save: "CHF 9,100", pct: "51%", points: [
+        { label: "Fixed teeth in 48–72 hours.", text: "You fly home with a fixed provisional bridge, never with an empty jaw." },
+        { label: "Usually no bone grafting.", text: "The angled rear implants reach solid bone, which is what removes the graft and its cost." },
+        { label: "Final ceramic bridge included.", text: "Fitted on your second visit — it is not a separate line on a later invoice." }
+      ]},
+      { name: "All-on-6 — one arch", price: "CHF 10,500", ref: "CHF 22,000", save: "CHF 11,500", pct: "52%", points: [
+        { label: "Two more anchors.", text: "For heavier bite forces or a jaw where four would be working too hard." },
+        { label: "Same timeline.", text: "Fixed provisional in the same first week." },
+        { label: "Up to 10-year guarantee.", text: "The longest cover we write, on the implants themselves." }
+      ]}
+    ]
+  },
+  {
+    need: "mouth", eyebrow: "UPPER AND LOWER TOGETHER", name: "The whole mouth",
+    blurb: "The full rebuild. The single biggest saving against a Swiss quote, and the trip most worth planning properly.",
+    items: [
+      { name: "All-on-4, both arches", flag: "Biggest saving", price: "CHF 16,900", ref: "CHF 35,000", save: "CHF 18,100", pct: "52%", points: [
+        { label: "You save more than the trip costs.", text: "Eighteen thousand francs — flights, hotel and transfers are inside the price, not on top of it." },
+        { label: "One surgical visit.", text: "Both jaws are treated in the same week, so you travel twice in total, not four times." },
+        { label: "CHF 200 flight reimbursement.", text: "Paid back once treatment starts, on anything above CHF 2,000." }
+      ]},
+      { name: "Komplettsanierung — mixed rebuild", price: "from CHF 11,400", ref: "CHF 26,000", save: "CHF 14,600", pct: "56%", points: [
+        { label: "Keeps what is worth keeping.", text: "Sound teeth are crowned rather than removed — implants only where they earn their place." },
+        { label: "Costed line by line.", text: "You receive the plan itemised, so you can see what each tooth costs before agreeing." },
+        { label: "Staged if you prefer.", text: "The urgent half now, the rest next year, with prices held for 12 months." }
+      ]}
+    ]
+  },
+  {
+    need: "cosmetic", eyebrow: "NOTHING'S WRONG — IT JUST LOOKS WRONG", name: "Cosmetic work",
+    blurb: "Front teeth that photograph badly. Quick, conservative, and priced per tooth.",
+    items: [
+      { name: "E-max veneer", price: "CHF 650", ref: "CHF 1,300", save: "CHF 650", pct: "50%", points: [
+        { label: "Priced per tooth.", text: "Most people do six to eight across the smile line — you decide how many after seeing the mock-up." },
+        { label: "Digital preview first.", text: "You approve the result on screen before a single tooth is prepared." },
+        { label: "Minimal preparation.", text: "A fraction of a millimetre of enamel, not a full crown reduction." }
+      ]},
+      { name: "Professional whitening", price: "CHF 290", ref: "CHF 690", save: "CHF 400", pct: "58%", points: [
+        { label: "Done in one appointment.", text: "Fits inside a consultation day — no extra travel needed." },
+        { label: "Shade recorded.", text: "Any later crown or veneer is matched to the new shade, not the old one." },
+        { label: "Take-home trays included.", text: "For topping up at home, in the price." }
+      ]}
+    ]
+  },
+  {
+    need: "groundwork", eyebrow: "BEFORE THE REAL WORK CAN START", name: "Groundwork",
+    blurb: "The things a Swiss quote often lists as extras. Here they're priced openly, up front.",
+    items: [
+      { name: "Bone grafting", price: "CHF 390", ref: "CHF 1,200", save: "CHF 810", pct: "67%", points: [
+        { label: "Often not needed at all.", text: "Send your CT scan — with All-on-4 the angled implants frequently make grafting unnecessary." },
+        { label: "Priced per site.", text: "You see it as its own line, decided after the scan rather than assumed." },
+        { label: "Sinus lift quoted the same way.", text: "From CHF 590, with the same transparency." }
+      ]},
+      { name: "Extraction and root canal", price: "from CHF 85", ref: "CHF 320", save: "CHF 235", pct: "73%", points: [
+        { label: "Planned together with the replacement.", text: "Removal and what replaces it are scheduled in one trip, so there's no long gap-toothed wait." },
+        { label: "Microscope root canal from CHF 190.", text: "Where the tooth can still be saved, saving it is the cheaper answer." },
+        { label: "Sedation available.", text: "For nervous patients, at CHF 240 for the session." }
+      ]}
+    ]
+  }
+];
+
+const INTENTS = {
+  new: {
+    label: "New to this",
+    heroLead: "Real figures, in Swiss francs, with what's included spelled out. No consultation needed to see them.",
+    recEyebrow: "START HERE",
+    recTitle: "Not sure which line applies to you? That's normal.",
+    recBody: "Most people arrive knowing something is wrong, not what it's called. Pick the row that matches your mouth rather than the treatment name — or send an X-ray and let Dr. Majtényi tell you which of these you actually need.",
+    cta: "Send my X-ray for a plan", ctaAlt: "Book a free Swiss consultation",
+    contactTitle: "Tell us what's bothering you",
+    contactLead: "No treatment name needed. A photo or an X-ray is enough to start.",
+    context: "Starting point: new to treatment, exploring the options",
+    upload: "Add an X-ray or a photo of your smile"
+  },
+  quote: {
+    label: "I have a Swiss quote",
+    heroLead: "Compare line by line. Send the Swiss plan you already hold and we'll price the identical treatment within 24 hours.",
+    recEyebrow: "SECOND OPINION",
+    recTitle: "Send the quote you're holding. We'll cost the same treatment.",
+    recBody: "Same implant system, same ceramics, same number of units — priced honestly against what you were quoted at home. If a cheaper route reaches the same result, Dr. Majtényi will say so rather than match the plan line for line.",
+    cta: "Upload my Swiss quote", ctaAlt: "Ask about a specific line item",
+    contactTitle: "Send us the quote you already have",
+    contactLead: "Upload the Swiss plan and we return the same treatment, costed item by item.",
+    context: "Starting point: holds a Swiss quote, wants a like-for-like price",
+    upload: "Upload your Swiss quote or treatment plan"
+  },
+  compare: {
+    label: "Comparing clinics",
+    heroLead: "Prices with the small print attached — what's included, what's guaranteed, and where the aftercare happens.",
+    recEyebrow: "COMPARING PROPERLY",
+    recTitle: "Price is one column of five. Here are the other four.",
+    recBody: "Who treats you, which implant system, what the guarantee says in writing, and where aftercare happens. Every figure below already includes the Pure-Package and the written guarantee — so the number you see is the number you compare.",
+    cta: "Download the full price list (PDF)", ctaAlt: "Read the guarantee terms",
+    contactTitle: "Ask us the awkward questions",
+    contactLead: "Materials, credentials, guarantee wording, patient references. Dr. Majtényi answers personally.",
+    context: "Starting point: comparing clinics, wants the terms in writing",
+    upload: "Attach a competitor's quote to compare (optional)"
+  },
+  none: {
+    label: "Just browsing",
+    heroLead: "Every figure is the full, all-inclusive price. Filter to what you need and the list narrows to it.",
+    recEyebrow: "GUIDED PRICING",
+    recTitle: "Two questions and the list narrows to what matters",
+    recBody: "Tell us who you are and what you need. The price list below filters itself, and the enquiry form fills in the context so you don't repeat yourself.",
+    cta: "Get my written quote", ctaAlt: "Book a free Swiss consultation",
+    contactTitle: "Get your exact price in 24 hours",
+    contactLead: "Free, with no obligation. Dr. Majtényi reviews every enquiry himself.",
+    context: "Starting point: browsing prices",
+    upload: "Add your X-ray for an exact figure"
+  }
+};
+
+const DEFAULT_NEED = { new: [], quote: ["arch", "mouth"], compare: [], none: [] };
+
+class Component extends DCLogic {
+  state = { intent: "none", need: [], view: "our", compact: false };
+
+  toggleNeed(id) {
+    if (id === "all") return this.setState({ need: [] });
+    const cur = this.state.need;
+    this.setState({ need: cur.indexOf(id) > -1 ? cur.filter(n => n !== id) : cur.concat([id]) });
+  }
+
+  componentDidMount() {
+    let p = "";
+    try { p = new URLSearchParams(window.location.search).get("intent") || ""; } catch (e) { p = ""; }
+    if (INTENTS[p] && p !== "none") this.setState({ intent: p, need: DEFAULT_NEED[p].slice() });
+    this._onScroll = () => {
+      const c = (window.scrollY || document.documentElement.scrollTop || 0) > 260;
+      if (c !== this.state.compact) this.setState({ compact: c });
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+  }
+
+  chip(on) {
+    return "display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:999px;cursor:pointer;transition:all 200ms cubic-bezier(.2,.8,.2,1);font:" +
+      (on ? "700" : "600") + " 13px/1 Manrope;" +
+      (on ? "background:var(--gradient-primary);color:#fff;box-shadow:0 10px 28px rgba(30,77,255,.22)"
+          : "background:#fff;border:1px solid var(--color-border);color:var(--color-text-secondary)");
+  }
+
+  renderVals() {
+    const { intent, need, compact } = this.state;
+    const I = INTENTS[intent] || INTENTS.none;
+    const shown = CATS.filter(c => need.length === 0 || need.indexOf(c.need) > -1);
+    const total = shown.reduce((n, c) => n + c.items.length, 0);
+    const needLabels = need.map(id => (NEEDS.find(n => n.id === id) || {}).label).join(" + ");
+
+    return {
+      fullWidthBtn: { style: { width: "100%", justifyContent: "center" } },
+      heroLead: I.heroLead,
+      recEyebrow: I.recEyebrow, recTitle: I.recTitle, recBody: I.recBody,
+      recCta: I.cta, recCtaAlt: I.ctaAlt,
+      contactTitle: I.contactTitle, contactLead: I.contactLead,
+      contactContext: I.context + (needLabels ? " · " + needLabels : ""),
+      contactUpload: I.upload,
+
+      intentChips: ["new", "quote", "compare"].map(id => ({
+        label: INTENTS[id].label,
+        on: intent === id, off: intent !== id,
+        onClick: () => this.setState({ intent: intent === id ? "none" : id, need: intent === id ? [] : DEFAULT_NEED[id].slice() })
+      })),
+      needChips: NEEDS.map(n => {
+        const on = n.id === "all" ? need.length === 0 : need.indexOf(n.id) > -1;
+        return { label: n.label, on: on, off: !on, onClick: () => this.toggleNeed(n.id) };
+      }),
+
+      resultSummary: `${shown.length} ${shown.length === 1 ? "category" : "categories"} · ${total} treatments · all prices all-inclusive`,
+      shortSummary: `${total} treatments · ${needLabels || "everything"}`,
+      minState: compact ? "is-min" : "",
+      reset: () => this.setState({ intent: "none", need: [] }),
+
+      categories: shown.map(c => ({
+        eyebrow: c.eyebrow, name: c.name, blurb: c.blurb,
+        count: `${c.items.length} treatments`,
+        items: c.items.map(it => ({
+          name: it.name, flag: it.flag || false, pct: it.pct, points: it.points,
+          metricLabel: "all-inclusive from",
+          metric: it.price,
+          sub: `In Switzerland ${it.ref} — you save ${it.save}`
+        }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

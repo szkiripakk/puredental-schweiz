@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panaszalapú navigáció – PureDental</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     PureDental – Panaszalapú navigáció (Home Page)
+     Elementor HTML widget-be illeszthető, önálló szekció.
+     ============================================================ */
+
+  .pd-nav-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 88px 80px !important;
+    background: #f7fbfd !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  .pd-nav-section *,
+  .pd-nav-section *::before,
+  .pd-nav-section *::after {
+    box-sizing: border-box !important;
+  }
+  /* Biztonsági háló: semmilyen szöveg nem törhet ki a saját konténeréből,
+     függetlenül attól, hogy a host oldal (WordPress/Elementor) milyen
+     egyéb CSS-t ad a widgethez. A WordPress téma a <button> elemek belsejében
+     lévő szövegekre saját "white-space: nowrap" szabályt tesz (jellemzően a
+     gombfeliratok tördelését akarja megelőzni) — a .pd-nav-tile is <button>,
+     ezért ez ide is átszivárgott, és a kártya leírása egy sorba kényszerülve,
+     a doboz szélén túl, a lábléc fölé csúszva jelent meg. */
+  .pd-nav-section h2,
+  .pd-nav-section h3,
+  .pd-nav-section h4,
+  .pd-nav-section p,
+  .pd-nav-section span,
+  .pd-nav-section a,
+  .pd-nav-section button {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+  }
+  .pd-nav-inner {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+  }
+
+  /* ---------- Fejléc ---------- */
+  .pd-nav-header {
+    text-align: center !important;
+    margin-bottom: 36px !important;
+  }
+  .pd-nav-eyebrow {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: #217E9F !important;
+    margin-bottom: 16px !important;
+  }
+  .pd-nav-eyebrow::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 22px !important;
+    height: 1.5px !important;
+    background: #217E9F !important;
+    border-radius: 2px !important;
+  }
+  .pd-nav-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 40px !important;
+    line-height: 1.15 !important;
+    color: #0d1f2d !important;
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-lead {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    line-height: 1.7 !important;
+    color: #3d5463 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    max-width: 680px !important;
+  }
+
+  /* ---------- Kereső ---------- */
+  .pd-nav-searchbar {
+    max-width: 720px !important;
+    margin: 0 auto 44px auto !important;
+    position: relative !important;
+  }
+  .pd-nav-search-field {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    background: #ffffff !important;
+    border: 1px solid #dcecf3 !important;
+    border-radius: 14px !important;
+    padding: 4px 6px 4px 18px !important;
+    box-shadow: 0 2px 10px rgba(13, 31, 45, 0.04) !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+  }
+  .pd-nav-search-field:focus-within {
+    border-color: #217E9F !important;
+    box-shadow: 0 4px 18px rgba(33, 126, 159, 0.14) !important;
+  }
+  .pd-nav-search-ico {
+    display: inline-block !important;
+    width: 19px !important;
+    height: 19px !important;
+    flex-shrink: 0 !important;
+    background-color: #8aa4b3 !important;
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/search-outline-svgrepo-com.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/search-outline-svgrepo-com.svg') !important;
+    -webkit-mask-size: contain !important;
+            mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+            mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+            mask-position: center !important;
+  }
+  .pd-nav-search-input {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 15.5px !important;
+    font-weight: 400 !important;
+    color: #0d1f2d !important;
+    padding: 14px 0 !important;
+    box-shadow: none !important;
+  }
+  .pd-nav-search-input::placeholder {
+    color: #8aa4b3 !important;
+    opacity: 1 !important;
+  }
+  .pd-nav-search-clear {
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 30px !important;
+    height: 30px !important;
+    flex-shrink: 0 !important;
+    border: none !important;
+    background: #eef6fa !important;
+    color: #5a7080 !important;
+    border-radius: 8px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+  }
+  .pd-nav-search-clear.is-visible {
+    display: inline-flex !important;
+  }
+  .pd-nav-search-clear:hover {
+    background: #dceaf1 !important;
+    color: #0d1f2d !important;
+  }
+  .pd-nav-search-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    background: #217E9F !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 14.5px !important;
+    padding: 13px 22px !important;
+    margin-left: 4px !important;
+    cursor: pointer !important;
+  }
+  .pd-nav-search-cta:hover {
+    background: #195f7a !important;
+  }
+  .pd-nav-hints {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 14px !important;
+  }
+  .pd-nav-hints-label {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    color: #8aa4b3 !important;
+  }
+  .pd-nav-hint {
+    border: 1px solid #dcecf3 !important;
+    background: #ffffff !important;
+    color: #3d5463 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    padding: 5px 12px !important;
+    border-radius: 20px !important;
+    cursor: pointer !important;
+  }
+  .pd-nav-hint:hover {
+    border-color: #217E9F !important;
+    color: #217E9F !important;
+  }
+
+  /* ---------- 1. szint: kategória csempék ---------- */
+  .pd-nav-cats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    min-width: 0 !important;
+  }
+  .pd-nav-cats.is-hidden {
+    display: none !important;
+  }
+  .pd-nav-tile {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid #e3f0f6 !important;
+    border-radius: 20px !important;
+    padding: 28px 26px 24px !important;
+    cursor: pointer !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease !important;
+  }
+  .pd-nav-tile:hover {
+    border-color: #b9dced !important;
+    box-shadow: 0 12px 30px rgba(13, 31, 45, 0.08) !important;
+    transform: translateY(-3px) !important;
+  }
+  .pd-nav-tile:focus-visible {
+    outline: 2px solid #217E9F !important;
+    outline-offset: 3px !important;
+  }
+  .pd-nav-tile-ico {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 14px !important;
+    background: rgba(33, 126, 159, 0.09) !important;
+    margin-bottom: 18px !important;
+    flex-shrink: 0 !important;
+  }
+  .pd-nav-ico {
+    display: inline-block !important;
+    background-color: #217E9F !important;
+    -webkit-mask-size: contain !important;
+            mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+            mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+            mask-position: center !important;
+    width: 26px !important;
+    height: 26px !important;
+    flex-shrink: 0 !important;
+  }
+  .pd-nav-ico--fajdalom {
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/10_Infection.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/10_Infection.svg') !important;
+  }
+  .pd-nav-ico--szuvasodas {
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/17_Tooth.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/17_Tooth.svg') !important;
+  }
+  .pd-nav-ico--foginy {
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/29_Dental-Floss.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/29_Dental-Floss.svg') !important;
+  }
+  .pd-nav-ico--hianyzo {
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/33_Dental-Implant.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/33_Dental-Implant.svg') !important;
+  }
+  .pd-nav-ico--esztetika {
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/10/28_Dental-Care.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/10/28_Dental-Care.svg') !important;
+  }
+  .pd-nav-ico--megelozes {
+    -webkit-mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/4_Dental-Checkup.svg') !important;
+            mask-image: url('https://puredental.hu/wp-content/uploads/2025/09/4_Dental-Checkup.svg') !important;
+  }
+  .pd-nav-tile-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+    color: #0d1f2d !important;
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-tile-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14.5px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+    color: #5a7080 !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+    flex-grow: 1 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .pd-nav-tile-foot {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #eef5f9 !important;
+  }
+  .pd-nav-tile-count {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    color: #8aa4b3 !important;
+  }
+  .pd-nav-tile-go {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #217E9F !important;
+  }
+  .pd-nav-tile-go::after {
+    content: '→' !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+    transition: transform 0.18s ease !important;
+  }
+  .pd-nav-tile:hover .pd-nav-tile-go::after {
+    transform: translateX(4px) !important;
+  }
+
+  /* ---------- 2. szint: eredmények ---------- */
+  .pd-nav-results {
+    display: none !important;
+  }
+  .pd-nav-results.is-active {
+    display: block !important;
+    animation: pdNavFade 0.28s ease both !important;
+  }
+  @keyframes pdNavFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .pd-nav-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+  }
+  .pd-nav-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #ffffff !important;
+    border: 1px solid #dcecf3 !important;
+    border-radius: 20px !important;
+    color: #3d5463 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 16px 8px 13px !important;
+    cursor: pointer !important;
+  }
+  .pd-nav-back::before {
+    content: '←' !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+  }
+  .pd-nav-back:hover {
+    border-color: #217E9F !important;
+    color: #217E9F !important;
+  }
+  .pd-nav-chips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .pd-nav-chip {
+    background: #ffffff !important;
+    border: 1px solid #dcecf3 !important;
+    border-radius: 20px !important;
+    color: #3d5463 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 8px 16px !important;
+    cursor: pointer !important;
+    transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease !important;
+  }
+  .pd-nav-chip:hover {
+    border-color: #217E9F !important;
+    color: #217E9F !important;
+  }
+  .pd-nav-chip.is-active {
+    background: #217E9F !important;
+    border-color: #217E9F !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+  }
+  .pd-nav-resulthead {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    color: #8aa4b3 !important;
+    margin: 0 0 22px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-resulthead strong {
+    color: #0d1f2d !important;
+    font-weight: 700 !important;
+  }
+
+  .pd-nav-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 18px !important;
+    min-width: 0 !important;
+  }
+  .pd-nav-card {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid #e3f0f6 !important;
+    border-radius: 18px !important;
+    padding: 24px 24px 22px !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+  }
+  .pd-nav-card.is-hidden {
+    display: none !important;
+  }
+  .pd-nav-grid.is-hidden {
+    display: none !important;
+  }
+  .pd-nav-card:hover {
+    border-color: #b9dced !important;
+    box-shadow: 0 10px 26px rgba(13, 31, 45, 0.07) !important;
+  }
+  .pd-nav-card-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #8aa4b3 !important;
+    margin-bottom: 14px !important;
+  }
+  .pd-nav-card-badge .pd-nav-ico {
+    width: 14px !important;
+    height: 14px !important;
+    background-color: #a9c1cd !important;
+  }
+  .pd-nav-card-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 1.35 !important;
+    color: #0d1f2d !important;
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-card-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+    color: #5a7080 !important;
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+    flex-grow: 1 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .pd-nav-card-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #eef5f9 !important;
+  }
+  .pd-nav-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: rgba(33, 126, 159, 0.07) !important;
+    border: 1px solid rgba(33, 126, 159, 0.16) !important;
+    color: #217E9F !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    padding: 6px 13px !important;
+    border-radius: 20px !important;
+    text-decoration: none !important;
+    transition: background 0.16s ease, color 0.16s ease !important;
+  }
+  .pd-nav-link:hover {
+    background: #217E9F !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+  .pd-nav-link::after {
+    content: '→' !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+
+  .pd-nav-empty {
+    display: none !important;
+    background: #ffffff !important;
+    border: 1px dashed #cfe4ee !important;
+    border-radius: 18px !important;
+    padding: 44px 28px !important;
+    text-align: center !important;
+  }
+  .pd-nav-empty.is-active {
+    display: block !important;
+  }
+  .pd-nav-empty-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #0d1f2d !important;
+    margin: 0 0 8px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-empty-text {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+    color: #5a7080 !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-empty-actions {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  /* ---------- Konverziós sáv ---------- */
+  .pd-nav-cta-band {
+    margin-top: 56px !important;
+    background: #0d1f2d !important;
+    border-radius: 24px !important;
+    padding: 44px 44px 40px !important;
+  }
+  .pd-nav-cta-head {
+    text-align: center !important;
+    margin-bottom: 32px !important;
+  }
+  .pd-nav-cta-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 27px !important;
+    line-height: 1.25 !important;
+    color: #ffffff !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-cta-lead {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 15.5px !important;
+    font-weight: 400 !important;
+    line-height: 1.7 !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    max-width: 640px !important;
+  }
+  .pd-nav-cta-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+    min-width: 0 !important;
+  }
+  .pd-nav-cta-card {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    border-radius: 16px !important;
+    padding: 26px 24px 24px !important;
+    text-decoration: none !important;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease !important;
+  }
+  .pd-nav-cta-card:hover {
+    background: rgba(91, 191, 223, 0.12) !important;
+    border-color: rgba(91, 191, 223, 0.45) !important;
+    transform: translateY(-3px) !important;
+    text-decoration: none !important;
+  }
+  .pd-nav-cta-card--primary {
+    background: #217E9F !important;
+    border-color: #217E9F !important;
+  }
+  .pd-nav-cta-card--primary:hover {
+    background: #2a92b6 !important;
+    border-color: #2a92b6 !important;
+  }
+  .pd-nav-cta-ico {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    margin-bottom: 16px !important;
+    flex-shrink: 0 !important;
+  }
+  .pd-nav-cta-ico .pd-nav-ico {
+    width: 21px !important;
+    height: 21px !important;
+    background-color: #5bbfdf !important;
+  }
+  .pd-nav-cta-card--primary .pd-nav-cta-ico .pd-nav-ico {
+    background-color: #ffffff !important;
+  }
+  .pd-nav-cta-name {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 16.5px !important;
+    line-height: 1.3 !important;
+    color: #ffffff !important;
+    margin: 0 0 8px 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-cta-text {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+    flex-grow: 1 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .pd-nav-cta-card--primary .pd-nav-cta-text {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  .pd-nav-cta-action {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #5bbfdf !important;
+  }
+  .pd-nav-cta-card--primary .pd-nav-cta-action {
+    color: #ffffff !important;
+  }
+  .pd-nav-cta-action::after {
+    content: '→' !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    transition: transform 0.18s ease !important;
+  }
+  .pd-nav-cta-card:hover .pd-nav-cta-action::after {
+    transform: translateX(4px) !important;
+  }
+  .pd-nav-cta-note {
+    text-align: center !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.42) !important;
+    margin: 26px 0 0 0 !important;
+    padding: 0 !important;
+  }
+  .pd-nav-cta-note a {
+    color: rgba(255, 255, 255, 0.72) !important;
+    text-decoration: underline !important;
+  }
+
+  /* ---------- Reszponzív ---------- */
+  @media (max-width: 1080px) {
+    .pd-nav-section { padding: 68px 40px !important; }
+    .pd-nav-cats { grid-template-columns: repeat(2, 1fr) !important; }
+    .pd-nav-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 780px) {
+    .pd-nav-section { padding: 52px 20px !important; }
+    .pd-nav-title { font-size: 26px !important; }
+    .pd-nav-lead { font-size: 15.5px !important; }
+    .pd-nav-cats { grid-template-columns: 1fr !important; }
+    .pd-nav-grid { grid-template-columns: 1fr !important; }
+    .pd-nav-cta-grid { grid-template-columns: 1fr !important; }
+    .pd-nav-cta-band { padding: 32px 22px 28px !important; border-radius: 20px !important; }
+    .pd-nav-cta-title { font-size: 22px !important; }
+    .pd-nav-search-cta { display: none !important; }
+    .pd-nav-search-field { padding: 4px 8px 4px 16px !important; }
+
+    /* A szűrő-chipek mobilon egy sorban, vízszintesen görgethetők */
+    .pd-nav-bar {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 12px !important;
+    }
+    .pd-nav-back { align-self: flex-start !important; }
+    .pd-nav-chips {
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      padding-bottom: 4px !important;
+      scrollbar-width: none !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    .pd-nav-chips::-webkit-scrollbar { display: none !important; }
+    .pd-nav-chip { flex: 0 0 auto !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:transparent;">
+
+<section class="pd-nav-section" id="pd-nav">
+  <div class="pd-nav-inner">
+
+    <!-- ===== Fejléc ===== -->
+    <div class="pd-nav-header">
+      <span class="pd-nav-eyebrow">Panaszalapú útmutató</span>
+      <h2 class="pd-nav-title">Mondja el, mit érez — mi megmutatjuk a megoldást</h2>
+      <p class="pd-nav-lead">Nem kell ismernie a kezelések nevét. Válassza ki, mi zavarja — és néhány kattintással eljut a pontos információig, vagy egyenesen az időpontfoglalásig.</p>
+    </div>
+
+    <!-- ===== Kereső ===== -->
+    <div class="pd-nav-searchbar">
+      <div class="pd-nav-search-field">
+        <span class="pd-nav-search-ico" aria-hidden="true"></span>
+        <label for="pd-nav-q" class="pd-nav-sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;">Keresés panasz vagy kezelés alapján</label>
+        <input
+          id="pd-nav-q"
+          class="pd-nav-search-input"
+          type="text"
+          autocomplete="off"
+          placeholder="Keressen tünetre vagy kezelésre…"
+        >
+        <button type="button" class="pd-nav-search-clear" aria-label="Keresés törlése">&times;</button>
+        <button type="button" class="pd-nav-search-cta">Keresés</button>
+      </div>
+      <div class="pd-nav-hints">
+        <span class="pd-nav-hints-label">Gyakori keresés:</span>
+        <button type="button" class="pd-nav-hint">fogfájás</button>
+        <button type="button" class="pd-nav-hint">fogínyvérzés</button>
+        <button type="button" class="pd-nav-hint">hiányzó fog</button>
+        <button type="button" class="pd-nav-hint">fogfehérítés</button>
+        <button type="button" class="pd-nav-hint">bölcsességfog</button>
+      </div>
+    </div>
+
+    <!-- ===== 1. szint: kategóriák ===== -->
+    <div class="pd-nav-cats">
+
+      <button type="button" class="pd-nav-tile" data-cat="fajdalom">
+        <span class="pd-nav-tile-ico"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span></span>
+        <h3 class="pd-nav-tile-title">Fogfájás és sürgős panasz</h3>
+        <p class="pd-nav-tile-desc">Lüktető, sajgó fájdalom, duzzanat, letört fog vagy bölcsességfog-panasz — ami nem tűr halasztást.</p>
+        <span class="pd-nav-tile-foot">
+          <span class="pd-nav-tile-count" data-count-for="fajdalom">6 panasz</span>
+          <span class="pd-nav-tile-go">Megnézem</span>
+        </span>
+      </button>
+
+      <button type="button" class="pd-nav-tile" data-cat="szuvasodas">
+        <span class="pd-nav-tile-ico"><span class="pd-nav-ico pd-nav-ico--szuvasodas" aria-hidden="true"></span></span>
+        <h3 class="pd-nav-tile-title">Szuvasodás és fogtömés</h3>
+        <p class="pd-nav-tile-desc">Lyukas fog, kiesett tömés, sötét folt vagy régi amalgám, amit szeretne lecserélni.</p>
+        <span class="pd-nav-tile-foot">
+          <span class="pd-nav-tile-count" data-count-for="szuvasodas">5 panasz</span>
+          <span class="pd-nav-tile-go">Megnézem</span>
+        </span>
+      </button>
+
+      <button type="button" class="pd-nav-tile" data-cat="foginy">
+        <span class="pd-nav-tile-ico"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span></span>
+        <h3 class="pd-nav-tile-title">Fogíny és fogágy</h3>
+        <p class="pd-nav-tile-desc">Ínyvérzés, visszahúzódó íny, mozgó fogak, fogkő vagy kellemetlen lehelet.</p>
+        <span class="pd-nav-tile-foot">
+          <span class="pd-nav-tile-count" data-count-for="foginy">5 panasz</span>
+          <span class="pd-nav-tile-go">Megnézem</span>
+        </span>
+      </button>
+
+      <button type="button" class="pd-nav-tile" data-cat="hianyzo">
+        <span class="pd-nav-tile-ico"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span></span>
+        <h3 class="pd-nav-tile-title">Hiányzó fogak és fogpótlás</h3>
+        <p class="pd-nav-tile-desc">Egy vagy több hiányzó fog, nehézkes rágás, régi fogsor vagy tönkrement híd.</p>
+        <span class="pd-nav-tile-foot">
+          <span class="pd-nav-tile-count" data-count-for="hianyzo">6 panasz</span>
+          <span class="pd-nav-tile-go">Megnézem</span>
+        </span>
+      </button>
+
+      <button type="button" class="pd-nav-tile" data-cat="esztetika">
+        <span class="pd-nav-tile-ico"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span></span>
+        <h3 class="pd-nav-tile-title">Esztétika és mosoly</h3>
+        <p class="pd-nav-tile-desc">Elszíneződés, ferde vagy réses fogak, kopott fogélek — ha nem szívesen mosolyog.</p>
+        <span class="pd-nav-tile-foot">
+          <span class="pd-nav-tile-count" data-count-for="esztetika">6 panasz</span>
+          <span class="pd-nav-tile-go">Megnézem</span>
+        </span>
+      </button>
+
+      <button type="button" class="pd-nav-tile" data-cat="megelozes">
+        <span class="pd-nav-tile-ico"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span></span>
+        <h3 class="pd-nav-tile-title">Megelőzés és gondozás</h3>
+        <p class="pd-nav-tile-desc">Állapotfelmérés, rendszeres szűrés, fogcsikorgatás vagy fogorvosi félelem.</p>
+        <span class="pd-nav-tile-foot">
+          <span class="pd-nav-tile-count" data-count-for="megelozes">6 panasz</span>
+          <span class="pd-nav-tile-go">Megnézem</span>
+        </span>
+      </button>
+
+    </div>
+
+    <!-- ===== 2. szint: panaszok ===== -->
+    <div class="pd-nav-results" aria-live="polite">
+
+      <div class="pd-nav-bar">
+        <button type="button" class="pd-nav-back">Vissza a kategóriákhoz</button>
+        <div class="pd-nav-chips">
+          <button type="button" class="pd-nav-chip" data-cat="all">Összes panasz</button>
+          <button type="button" class="pd-nav-chip" data-cat="fajdalom">Fogfájás, sürgősség</button>
+          <button type="button" class="pd-nav-chip" data-cat="szuvasodas">Szuvasodás</button>
+          <button type="button" class="pd-nav-chip" data-cat="foginy">Fogíny és fogágy</button>
+          <button type="button" class="pd-nav-chip" data-cat="hianyzo">Hiányzó fogak</button>
+          <button type="button" class="pd-nav-chip" data-cat="esztetika">Esztétika</button>
+          <button type="button" class="pd-nav-chip" data-cat="megelozes">Megelőzés</button>
+        </div>
+      </div>
+
+      <p class="pd-nav-resulthead"></p>
+
+      <div class="pd-nav-grid">
+
+        <!-- ---------- Fogfájás és sürgős panasz ---------- -->
+        <article class="pd-nav-card" data-cat="fajdalom" data-keys="fogfájás lüktet sajog hasogat éjszaka fájdalomcsillapító idegkezelés">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span>Fogfájás</span>
+          <h3 class="pd-nav-card-title">Lüktet, sajog a fogam — főleg éjszaka</h3>
+          <p class="pd-nav-card-desc">A tartós, lüktető fájdalom szinte mindig a fogbél gyulladását jelzi. Fájdalomcsillapítóval elnyomható, de magától nem szűnik meg.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/surgossegi-fogaszat/">Sürgősségi fogászat</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/mikroszkopos-gyokerkezeles/">Mikroszkópos gyökérkezelés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="fajdalom" data-keys="ráharapás éles fájdalom repedt fog rágás nyomásra">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span>Fogfájás</span>
+          <h3 class="pd-nav-card-title">Ráharapásra éles fájdalom nyilall a fogamba</h3>
+          <p class="pd-nav-card-desc">Repedt fog, mély szuvasodás vagy elhalt fogideg is állhat a háttérben. A pontos ok csak vizsgálattal deríthető ki.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/mikroszkopos-gyokerkezeles/">Gyökérkezelés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikus-fogtomesek-es-betetek/">Fogtömés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="fajdalom" data-keys="letört fog beszakadt baleset éles perem törött korona">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span>Sürgősség</span>
+          <h3 class="pd-nav-card-title">Letört, beszakadt a fogam</h3>
+          <p class="pd-nav-card-desc">A törött fog éles pereme sértheti a nyelvet, a nyitott felszín pedig gyorsan elfertőződik. Érdemes 24 órán belül ellátni.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/surgossegi-fogaszat/">Sürgősségi fogászat</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogkoronak-es-hidak/">Koronák és hidak</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="fajdalom" data-keys="duzzadt arc tályog gyulladás láz genny gócos fog">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span>Sürgősség</span>
+          <h3 class="pd-nav-card-title">Bedagadt az arcom, gyulladt a fogam környéke</h3>
+          <p class="pd-nav-card-desc">A duzzanat tályogra utalhat, ami gyors ellátást igényel. Ilyenkor a fájdalomcsillapítás önmagában nem elegendő.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/surgossegi-fogaszat/">Sürgősségi fogászat</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/szajsebeszet/">Szájsebészet</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="fajdalom" data-keys="bölcsességfog feszít nyomás nőtt ki nem fér el gyulladás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span>Sürgősség</span>
+          <h3 class="pd-nav-card-title">Fáj, feszít a bölcsességfogam</h3>
+          <p class="pd-nav-card-desc">A ferdén növő vagy be nem tört bölcsességfog visszatérő gyulladást és torlódást okozhat a szomszédos fogakon.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/bolcsessegfog-eltavolitas/">Bölcsességfog-eltávolítás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/szajsebeszet/">Szájsebészet</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="fajdalom" data-keys="érzékeny fog hideg meleg édes belenyilall nyaki érzékenység">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span>Fogfájás</span>
+          <h3 class="pd-nav-card-title">Érzékeny a fogam hidegre, melegre, édesre</h3>
+          <p class="pd-nav-card-desc">Az érzékenység gyakran ínyvisszahúzódás, kopás vagy kezdődő szuvasodás jele — mindegyik jól kezelhető, ha időben kiderül.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/parodontologia/">Parodontológia</a>
+          </div>
+        </article>
+
+        <!-- ---------- Szuvasodás és fogtömés ---------- -->
+        <article class="pd-nav-card" data-cat="szuvasodas" data-keys="lyukas fog szuvas caries üreg akadás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--szuvasodas" aria-hidden="true"></span>Szuvasodás</span>
+          <h3 class="pd-nav-card-title">Lyukas a fogam</h3>
+          <p class="pd-nav-card-desc">A korán felfedezett szuvasodás egyetlen ülésben, esztétikus töméssel ellátható — később már gyökérkezelés lehet a következmény.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikus-fogtomesek-es-betetek/">Esztétikus fogtömés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="szuvasodas" data-keys="kiesett tömés kiesett plomba tömés kitört pótlás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--szuvasodas" aria-hidden="true"></span>Szuvasodás</span>
+          <h3 class="pd-nav-card-title">Kiesett a fogtömésem</h3>
+          <p class="pd-nav-card-desc">A tömés nélkül maradt fog gyorsan tovább szuvasodik és érzékennyé válik. A pótlás rutinbeavatkozás.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikus-fogtomesek-es-betetek/">Esztétikus fogtömés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/surgossegi-fogaszat/">Sürgősségi fogászat</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="szuvasodas" data-keys="sötét folt elszíneződés barna folt fogon rejtett szuvasodás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--szuvasodas" aria-hidden="true"></span>Szuvasodás</span>
+          <h3 class="pd-nav-card-title">Sötét folt jelent meg a fogamon</h3>
+          <p class="pd-nav-card-desc">A folt lehet felszíni elszíneződés, de rejtett szuvasodás is. Röntgennel és nagyítás alatt egyértelműen elkülöníthető.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Diagnosztika</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikus-fogtomesek-es-betetek/">Esztétikus fogtömés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="szuvasodas" data-keys="amalgám tömés csere fém tömés régi tömés inlay betét">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--szuvasodas" aria-hidden="true"></span>Szuvasodás</span>
+          <h3 class="pd-nav-card-title">Régi, fémszínű töméseimet cserélném</h3>
+          <p class="pd-nav-card-desc">Az elöregedett tömések széle beszivárgást enged. Helyettük fogszínű tömés vagy tartósabb kerámia betét készíthető.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikus-fogtomesek-es-betetek/">Esztétikus tömések és betétek</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="szuvasodas" data-keys="gyökérkezelt fog fáj újrakezelés rezekció gyökércsúcs visszatérő gyulladás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--szuvasodas" aria-hidden="true"></span>Gyökérkezelés</span>
+          <h3 class="pd-nav-card-title">Már gyökérkezelt a fogam, mégis fáj</h3>
+          <p class="pd-nav-card-desc">A korábbi kezelés után visszatérő panasz mikroszkópos újrakezeléssel vagy gyökércsúcs-eltávolítással orvosolható.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/mikroszkopos-gyokerkezeles/">Mikroszkópos gyökérkezelés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/szajsebeszet/">Szájsebészet</a>
+          </div>
+        </article>
+
+        <!-- ---------- Fogíny és fogágy ---------- -->
+        <article class="pd-nav-card" data-cat="foginy" data-keys="fogínyvérzés vérzik az ínyem fogmosás duzzadt íny ínygyulladás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span>Fogíny</span>
+          <h3 class="pd-nav-card-title">Vérzik az ínyem fogmosáskor</h3>
+          <p class="pd-nav-card-desc">A rendszeres ínyvérzés gyulladás jele. Kezelés nélkül fogágybetegséggé súlyosbodhat, ami már a fogakat tartó csontot is érinti.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/parodontologia/">Parodontológia</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ultrahangos-fogko-eltavolitas/">Fogkőeltávolítás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="foginy" data-keys="visszahúzódott íny ínysorvadás hosszabb fog fognyak látszik ínypótlás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span>Fogíny</span>
+          <h3 class="pd-nav-card-title">Visszahúzódott az ínyem, hosszabbnak látszanak a fogaim</h3>
+          <p class="pd-nav-card-desc">Az ínyvisszahúzódás érzékenységet és esztétikai panaszt is okoz. Megfelelő technikával az ínyszél korrigálható.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/parodontologia/">Parodontológia</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikai-szajsebeszet/">Esztétikai szájsebészet</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="foginy" data-keys="mozgó fog lazul a fogam fogágybetegség parodontitis kilazult">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span>Fogágy</span>
+          <h3 class="pd-nav-card-title">Mozognak, lazulnak a fogaim</h3>
+          <p class="pd-nav-card-desc">A fogmozgás előrehaladott fogágybetegségre utal. Időben megkezdett kezeléssel a fogak sokszor megtarthatók.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/parodontologia/">Parodontológia</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogpotlas-es-fogbeultetes/">Fogpótlás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="foginy" data-keys="rossz lehelet szájszag halitózis kellemetlen szag">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span>Fogíny</span>
+          <h3 class="pd-nav-card-title">Kellemetlen a leheletem, hiába mosok fogat</h3>
+          <p class="pd-nav-card-desc">A tartós szájszag hátterében legtöbbször fogkő, ínygyulladás vagy rejtett szuvasodás áll — mindhárom kezelhető.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ultrahangos-fogko-eltavolitas/">Fogkőeltávolítás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/parodontologia/">Parodontológia</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="foginy" data-keys="fogkő lerakódás sárgás lepedék fogkőeltávolítás polírozás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span>Fogíny</span>
+          <h3 class="pd-nav-card-title">Fogkő rakódott le a fogaimon</h3>
+          <p class="pd-nav-card-desc">A fogkő otthon nem távolítható el, és folyamatosan ingerli az ínyt. Ultrahangos tisztítással fájdalommentesen eltávolítható.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ultrahangos-fogko-eltavolitas/">Ultrahangos fogkőeltávolítás</a>
+          </div>
+        </article>
+
+        <!-- ---------- Hiányzó fogak és fogpótlás ---------- -->
+        <article class="pd-nav-card" data-cat="hianyzo" data-keys="hiányzik egy fogam foghiány implantátum híd pótlás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span>Foghiány</span>
+          <h3 class="pd-nav-card-title">Hiányzik egy fogam</h3>
+          <p class="pd-nav-card-desc">Egyetlen hiányzó fog is megbontja a fogsor egyensúlyát. Implantátummal a szomszédos fogak érintetlenek maradnak.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogimplantatum/">Fogimplantátum</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogkoronak-es-hidak/">Koronák és hidak</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="hianyzo" data-keys="több hiányzó fog teljes fogatlanság rágás nehéz all-on-4 fogsor">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span>Foghiány</span>
+          <h3 class="pd-nav-card-title">Több fogam hiányzik, nehézkes a rágás</h3>
+          <p class="pd-nav-card-desc">Kiterjedt foghiány esetén rögzített, teljes fogívet pótló megoldások is szóba jönnek — akár néhány implantátumra alapozva.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/all-on-4-fogpotlas/">All-on-4 fogpótlás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogpotlas-es-fogbeultetes/">Fogpótlás és fogbeültetés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="hianyzo" data-keys="kivehető fogsor kivehető protézis rögzített fogpótlás stég stéges fogsor">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span>Fogpótlás</span>
+          <h3 class="pd-nav-card-title">Nem szeretnék kivehető fogsort</h3>
+          <p class="pd-nav-card-desc">A kivehető protézis helyett stabil, implantátumra rögzített megoldások közül választhat — a stégestől az All-on-4-ig.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/steges-fogsorok/">Stéges fogsor</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/all-on-4-fogpotlas/">All-on-4 fogpótlás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="hianyzo" data-keys="kevés csont csontpótlás sinus lift nincs elég csont implantátumhoz">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span>Fogpótlás</span>
+          <h3 class="pd-nav-card-title">Azt mondták, kevés a csontom implantátumhoz</h3>
+          <p class="pd-nav-card-desc">A csont hiánya ma már ritkán akadály: csontpótlással a legtöbb esetben megteremthető az implantátum alapja.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/csontpotlas/">Csontpótlás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogimplantatum/">Fogimplantátum</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="hianyzo" data-keys="foghúzás fogeltávolítás menthetetlen fog kihúzás pótlás utána">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span>Fogeltávolítás</span>
+          <h3 class="pd-nav-card-title">Valószínűleg el kell távolítani egy fogamat</h3>
+          <p class="pd-nav-card-desc">Ha a fog már nem menthető, érdemes együtt megtervezni az eltávolítást és a pótlást, hogy ne maradjon hosszú átmeneti időszak.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/foghuzas-fogeltavolitas/">Foghúzás, fogeltávolítás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogpotlas-es-fogbeultetes/">Fogpótlás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="hianyzo" data-keys="régi híd korona kilazult tönkrement pótlás csere">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--hianyzo" aria-hidden="true"></span>Fogpótlás</span>
+          <h3 class="pd-nav-card-title">Régi hidam vagy koronám tönkrement</h3>
+          <p class="pd-nav-card-desc">A kilazult vagy elszíneződött pótlás alatt gyakran szuvasodás indul. A csere előtt mindig érdemes felmérni az alatta lévő fogakat.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogkoronak-es-hidak/">Koronák és hidak</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+          </div>
+        </article>
+
+        <!-- ---------- Esztétika és mosoly ---------- -->
+        <article class="pd-nav-card" data-cat="esztetika" data-keys="sárga fog elszíneződés fogfehérítés kávé cigaretta fehérebb">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span>Esztétika</span>
+          <h3 class="pd-nav-card-title">Sárgák, elszíneződtek a fogaim</h3>
+          <p class="pd-nav-card-desc">A felszíni lerakódás tisztítással, a mélyebb elszíneződés szakorvosi fogfehérítéssel szüntethető meg — kíméletesen.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogfeherites/">Fogfehérítés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ultrahangos-fogko-eltavolitas/">Fogkőeltávolítás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="esztetika" data-keys="nem szeretek mosolyogni mosolytervezés héj veneer teljes mosoly">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span>Esztétika</span>
+          <h3 class="pd-nav-card-title">Nem szeretek mosolyogni a fogaim miatt</h3>
+          <p class="pd-nav-card-desc">Mosolytervezéssel előre láthatja a végeredményt, még mielőtt bármilyen beavatkozás elkezdődne.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/mosolytervezes/">Mosolytervezés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-hejak/">Fogászati héjak</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="esztetika" data-keys="ferde fog torlódás kusza fogszabályozás láthatatlan sín">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span>Fogszabályozás</span>
+          <h3 class="pd-nav-card-title">Ferdék, torlódtak a fogaim</h3>
+          <p class="pd-nav-card-desc">A szabálytalan fogsor nemcsak esztétikai kérdés: nehezebben tisztítható, és egyenetlenül terheli a fogakat.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogszabalyozas/">Fogszabályozás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/mosolytervezes/">Mosolytervezés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="esztetika" data-keys="rés a fogak között hézag diasztéma záró héj">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span>Esztétika</span>
+          <h3 class="pd-nav-card-title">Rés van a fogaim között</h3>
+          <p class="pd-nav-card-desc">A hézag zárható héjjal vagy esztétikus töméssel gyorsan, illetve fogszabályozással a fogak valódi elmozdításával.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-hejak/">Fogászati héjak</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogszabalyozas/">Fogszabályozás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="esztetika" data-keys="ínyes mosoly gummy smile egyenetlen ínyszél sok íny látszik">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span>Esztétika</span>
+          <h3 class="pd-nav-card-title">Mosolygáskor sok íny látszik, egyenetlen az ínyszél</h3>
+          <p class="pd-nav-card-desc">Az ínykontúr néhány milliméteres korrekciója is látványosan harmonikusabbá teszi a mosolyt.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/esztetikai-szajsebeszet/">Esztétikai szájsebészet</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/mosolytervezes/">Mosolytervezés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="esztetika" data-keys="kopott fog letört fogél rövidült fogak csorba">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--esztetika" aria-hidden="true"></span>Esztétika</span>
+          <h3 class="pd-nav-card-title">Kopottak, csorbák a fogéleim</h3>
+          <p class="pd-nav-card-desc">A kopás gyakran fogcsikorgatás következménye. Az ok kezelése nélkül az új pótlás is hamar károsodhat.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-hejak/">Fogászati héjak</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ejszakai-fogszoritas-fogcsikorgatas/">Fogcsikorgatás kezelése</a>
+          </div>
+        </article>
+
+        <!-- ---------- Megelőzés és gondozás ---------- -->
+        <article class="pd-nav-card" data-cat="megelozes" data-keys="évek óta nem voltam fogorvosnál elhanyagolt fogak kezdés felmérés">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span>Megelőzés</span>
+          <h3 class="pd-nav-card-title">Évek óta nem voltam fogorvosnál</h3>
+          <p class="pd-nav-card-desc">Az első lépés mindig a teljes állapotfelmérés: ebből derül ki, mi sürgős, mi várhat, és mibe kerül a rendbetétel.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés és diagnosztika</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="megelozes" data-keys="szűrés kontroll félévente rendszeres ellenőrzés megelőzés">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span>Megelőzés</span>
+          <h3 class="pd-nav-card-title">Rendszeres szűrésre, kontrollra járnék</h3>
+          <p class="pd-nav-card-desc">A félévente ismételt szűrés és tisztítás a legolcsóbb fogászati kezelés — mert a legtöbb problémát meg sem engedi kialakulni.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ultrahangos-fogko-eltavolitas/">Fogkőeltávolítás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="megelozes" data-keys="fogcsikorgatás fogszorítás éjszaka bruxizmus harapásemelő sín állkapocs fájdalom">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span>Megelőzés</span>
+          <h3 class="pd-nav-card-title">Éjszaka szorítom, csikorgatom a fogam</h3>
+          <p class="pd-nav-card-desc">A reggeli állkapocsfájdalom és a kopó fogélek jellemző jelek. Egyéni sínnel a fogak megvédhetők a további károsodástól.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ejszakai-fogszoritas-fogcsikorgatas/">Fogszorítás és fogcsikorgatás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="megelozes" data-keys="félek a fogorvostól szorongás altatás bódítás fájdalommentes">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span>Megelőzés</span>
+          <h3 class="pd-nav-card-title">Félek a fogorvostól, ezért halogatom</h3>
+          <p class="pd-nav-card-desc">A szorongás nem akadály: a kezelések bódításban vagy altatásban is elvégezhetők, akár több beavatkozás egy alkalommal.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/altatas-boditas/">Altatás, bódítás</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="megelozes" data-keys="terhesség babavárás fogászati ellenőrzés kismama gócszűrés">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span>Megelőzés</span>
+          <h3 class="pd-nav-card-title">Babát tervezünk — fogászati ellenőrzésre lenne szükségem</h3>
+          <p class="pd-nav-card-desc">Terhesség előtt érdemes rendezni a gyulladásos gócokat, mert a várandósság alatt sok beavatkozás már nem javasolt.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés</a>
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/ultrahangos-fogko-eltavolitas/">Fogkőeltávolítás</a>
+          </div>
+        </article>
+
+        <article class="pd-nav-card" data-cat="megelozes" data-keys="gócszűrés műtét előtt orvosi kérés góckutatás fogászati igazolás">
+          <span class="pd-nav-card-badge"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span>Megelőzés</span>
+          <h3 class="pd-nav-card-title">Gócszűrésre küldtek műtét előtt</h3>
+          <p class="pd-nav-card-desc">A góckutatás röntgenfelvétellel és vizsgálattal történik, az eredményről igazolást állítunk ki a kezelőorvosa számára.</p>
+          <div class="pd-nav-card-links">
+            <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/fogaszati-allapotfelmeres-es-diagnosztika/">Állapotfelmérés és diagnosztika</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="pd-nav-empty">
+        <h3 class="pd-nav-empty-title">Erre a kifejezésre nincs találat</h3>
+        <p class="pd-nav-empty-text">Próbálja meg más szóval, vagy mondja el nekünk, mit tapasztal — kollégáink megmondják, melyik szakorvoshoz érdemes fordulnia.</p>
+        <div class="pd-nav-empty-actions">
+          <a class="pd-nav-link" href="#kapcsolat">Kérjen időpontot konzultációra</a>
+          <a class="pd-nav-link" href="https://puredental.hu/szolgaltatasaink/">Összes szolgáltatásunk</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== Konverziós sáv ===== -->
+    <div class="pd-nav-cta-band">
+      <div class="pd-nav-cta-head">
+        <h3 class="pd-nav-cta-title">Nem találja, mi a panasza?</h3>
+        <p class="pd-nav-cta-lead">Nem baj — a pontos diagnózis a mi feladatunk. Válassza azt, ahogyan a legkényelmesebb felvennie velünk a kapcsolatot.</p>
+      </div>
+
+      <div class="pd-nav-cta-grid">
+
+        <a class="pd-nav-cta-card pd-nav-cta-card--primary" href="#kapcsolat">
+          <span class="pd-nav-cta-ico"><span class="pd-nav-ico pd-nav-ico--megelozes" aria-hidden="true"></span></span>
+          <span class="pd-nav-cta-name">Online időpontfoglalás</span>
+          <span class="pd-nav-cta-text">Töltse ki az űrlapot, és válassza ki, mikor lenne alkalmas. Nyitvatartási időben 3 órán belül visszajelzünk.</span>
+          <span class="pd-nav-cta-action">Kérjen időpontot konzultációra</span>
+        </a>
+
+        <a class="pd-nav-cta-card" href="#kapcsolat">
+          <span class="pd-nav-cta-ico"><span class="pd-nav-ico pd-nav-ico--foginy" aria-hidden="true"></span></span>
+          <span class="pd-nav-cta-name">Visszahívást kérek</span>
+          <span class="pd-nav-cta-text">Hagyja meg a telefonszámát és a panaszát néhány szóban — kollégánk hívja Önt, és segít eligazodni.</span>
+          <span class="pd-nav-cta-action">Kérek visszahívást</span>
+        </a>
+
+        <a class="pd-nav-cta-card" href="tel:+36301588848">
+          <span class="pd-nav-cta-ico"><span class="pd-nav-ico pd-nav-ico--fajdalom" aria-hidden="true"></span></span>
+          <span class="pd-nav-cta-name">Beszéljünk most</span>
+          <span class="pd-nav-cta-text">+36 30 158 8848 · Hétfő–csütörtök 8:00–20:00, péntek 8:00–18:00. Sürgős panasz esetén akár aznapi időpont.</span>
+          <span class="pd-nav-cta-action">Hívom a klinikát</span>
+        </a>
+
+      </div>
+
+      <p class="pd-nav-cta-note">Nem tudja, melyik kezelés mennyibe kerül? Nézze meg <a href="https://puredental.hu/arak/">árlistánkat</a>, vagy böngéssze az <a href="https://puredental.hu/szolgaltatasaink/">összes szolgáltatásunkat</a>.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var root = document.getElementById('pd-nav');
+  if (!root) { return; }
+
+  var catsView  = root.querySelector('.pd-nav-cats');
+  var resView   = root.querySelector('.pd-nav-results');
+  var grid      = root.querySelector('.pd-nav-grid');
+  var cards     = Array.prototype.slice.call(root.querySelectorAll('.pd-nav-card'));
+  var tiles     = Array.prototype.slice.call(root.querySelectorAll('.pd-nav-tile'));
+  var chips     = Array.prototype.slice.call(root.querySelectorAll('.pd-nav-chip'));
+  var hints     = Array.prototype.slice.call(root.querySelectorAll('.pd-nav-hint'));
+  var backBtn   = root.querySelector('.pd-nav-back');
+  var headEl    = root.querySelector('.pd-nav-resulthead');
+  var emptyEl   = root.querySelector('.pd-nav-empty');
+  var input     = root.querySelector('.pd-nav-search-input');
+  var clearBtn  = root.querySelector('.pd-nav-search-clear');
+  var searchCta = root.querySelector('.pd-nav-search-cta');
+
+  var CAT_LABELS = {
+    all:        'Összes panasz',
+    fajdalom:   'Fogfájás és sürgős panasz',
+    szuvasodas: 'Szuvasodás és fogtömés',
+    foginy:     'Fogíny és fogágy',
+    hianyzo:    'Hiányzó fogak és fogpótlás',
+    esztetika:  'Esztétika és mosoly',
+    megelozes:  'Megelőzés és gondozás'
+  };
+
+  var state = { view: 'cats', cat: 'all', q: '' };
+
+  /* Ékezet- és kisbetű-független normalizálás a kereséshez */
+  function norm(s) {
+    s = (s || '').toLowerCase();
+    if (String.prototype.normalize) {
+      s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+    return s;
+  }
+
+  /* Kereshető szöveg előkészítése kártyánként */
+  cards.forEach(function (card) {
+    var title = card.querySelector('.pd-nav-card-title');
+    var desc  = card.querySelector('.pd-nav-card-desc');
+    var links = Array.prototype.slice.call(card.querySelectorAll('.pd-nav-link'))
+      .map(function (a) { return a.textContent; }).join(' ');
+    card._pdText = norm(
+      (title ? title.textContent : '') + ' ' +
+      (desc ? desc.textContent : '') + ' ' +
+      links + ' ' +
+      (card.getAttribute('data-keys') || '')
+    );
+    card._pdCat = card.getAttribute('data-cat') || '';
+  });
+
+  /* Kategóriánkénti darabszám kiírása a csempékre */
+  Object.keys(CAT_LABELS).forEach(function (cat) {
+    if (cat === 'all') { return; }
+    var n = cards.filter(function (c) { return c._pdCat === cat; }).length;
+    var el = root.querySelector('[data-count-for="' + cat + '"]');
+    if (el) { el.textContent = n + ' panasz'; }
+  });
+
+  function setActiveChip(cat) {
+    chips.forEach(function (chip) {
+      var on = chip.getAttribute('data-cat') === cat;
+      chip.classList.toggle('is-active', on);
+      chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  function render() {
+    var searching = state.q.length >= 2;
+
+    if (state.view === 'cats' && !searching) {
+      catsView.classList.remove('is-hidden');
+      resView.classList.remove('is-active');
+      return;
+    }
+
+    catsView.classList.add('is-hidden');
+    resView.classList.add('is-active');
+
+    var q = norm(state.q);
+    var visible = 0;
+
+    cards.forEach(function (card) {
+      var ok = searching
+        ? card._pdText.indexOf(q) !== -1
+        : (state.cat === 'all' || card._pdCat === state.cat);
+      card.classList.toggle('is-hidden', !ok);
+      if (ok) { visible++; }
+    });
+
+    setActiveChip(searching ? 'all' : state.cat);
+    emptyEl.classList.toggle('is-active', visible === 0);
+    grid.classList.toggle('is-hidden', visible === 0);
+
+    if (searching) {
+      headEl.innerHTML = '„' + escapeHtml(state.q) + '” – <strong>' + visible + '</strong> találat';
+    } else {
+      headEl.innerHTML = CAT_LABELS[state.cat] + ' – <strong>' + visible + '</strong> panasz';
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+
+  function scrollToResults() {
+    if (!resView.getBoundingClientRect) { return; }
+    var top = resView.getBoundingClientRect().top + window.pageYOffset - 110;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  tiles.forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      state.view = 'results';
+      state.cat = tile.getAttribute('data-cat');
+      state.q = '';
+      input.value = '';
+      clearBtn.classList.remove('is-visible');
+      render();
+      scrollToResults();
+    });
+  });
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      state.view = 'results';
+      state.cat = chip.getAttribute('data-cat');
+      state.q = '';
+      input.value = '';
+      clearBtn.classList.remove('is-visible');
+      render();
+    });
+  });
+
+  backBtn.addEventListener('click', function () {
+    state.view = 'cats';
+    state.cat = 'all';
+    state.q = '';
+    input.value = '';
+    clearBtn.classList.remove('is-visible');
+    render();
+    scrollToResults();
+  });
+
+  input.addEventListener('input', function () {
+    state.q = input.value.trim();
+    clearBtn.classList.toggle('is-visible', input.value.length > 0);
+    render();
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      render();
+      scrollToResults();
+    }
+    if (e.key === 'Escape') {
+      input.value = '';
+      state.q = '';
+      clearBtn.classList.remove('is-visible');
+      render();
+    }
+  });
+
+  searchCta.addEventListener('click', function () {
+    render();
+    scrollToResults();
+  });
+
+  clearBtn.addEventListener('click', function () {
+    input.value = '';
+    state.q = '';
+    clearBtn.classList.remove('is-visible');
+    input.focus();
+    render();
+  });
+
+  hints.forEach(function (hint) {
+    hint.addEventListener('click', function () {
+      input.value = hint.textContent;
+      state.q = input.value.trim();
+      clearBtn.classList.add('is-visible');
+      render();
+      scrollToResults();
+    });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
